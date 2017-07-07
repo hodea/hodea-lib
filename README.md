@@ -1,2 +1,5 @@
-# hodea-core-slib
-Highly Optimized Deeply Embedded Auxiliaries Core Source Library
+# hodea-core-lib
+Highly Optimized Deeply Embedded Auxiliaries Core Library
+
+This is repository is under construction. More will follow...
+
