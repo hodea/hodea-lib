@@ -2,6 +2,16 @@
 
 This file describes the coding style used for the HODEA library.
 
+## Hungarian notation
+
+X DO NOT use Hungarian notation.
+
+The Hungarian notation [4] breaks abstraction and makes the code
+unmaintainable. It is hard to read and the naming gets wrong over time.
+
+[1], [2] discourage its use, and even the originator of the Hungarian
+notation has banned it [5].
+
 ## Related documents
 
 [1]: https://www.kernel.org/doc/html/v4.12/process/coding-style.html
@@ -19,12 +29,3 @@ This file describes the coding style used for the HODEA library.
 [5]: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions
     "Microsoft .NET General Naming Convention"
 
-## Hungarian notation
-
-X DO NOT use Hungarian notation.
-
-The Hungarian notation [4] breaks abstraction and makes the code
-unmaintainable. It is hard to read and the naming gets wrong over time.
-
-[1], [2] discourage its use, and even the originator of the Hungarian
-notation has banned it [5].
