@@ -12,7 +12,7 @@ This file describes the coding style used for the HODEA library.
 
 [[1]] [Linux Kernel Coding Style][1]
 
-[[2]] [C++ Core Guidlines by Bjarne Stroustrup and Herb Sutter][2]
+[[2]] [C++ Core Guidelines by Bjarne Stroustrup and Herb Sutter][2]
 
 [[3]] [PPP Style Guide, Bjarne Stroustrup][3]
 
@@ -20,6 +20,12 @@ This file describes the coding style used for the HODEA library.
 
 [[5]] [Microsoft .NET General Naming Convention][5]
 
+
+## C++ Core Guidelines
+
+In general we try to follow the recommendations from Bjarne Stroustrup and
+Herb Sutter.  Therefore, please consult the [C++ Core Guidelines][2] for
+details not noted here.
 
 ## Hungarian notation
 
@@ -145,3 +151,4 @@ else {
 ```
 
 Note: Stroustrup does not use a "cuddled else", so we don't either.
+
