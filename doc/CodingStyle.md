@@ -34,8 +34,8 @@ X DO NOT use Hungarian notation.
 The Hungarian notation [[4]] breaks abstraction and makes the code
 unmaintainable. It is hard to read and the naming gets wrong over time.
 
-[1], [2] discourage its use, and even Microsoft as originator of the
-Hungarian notation has banned it [5].
+[[1]], [[2]] discourage its use, and even Microsoft as originator of the
+Hungarian notation has banned it [[5]].
 
 ## Indentation
 
