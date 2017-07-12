@@ -39,12 +39,12 @@ Hungarian notation has banned it [[5]].
 
 ## Indentation
 
-- 4 spaces are used for indentation.
-- Configure the editor to expand tabs to spaces.
+- 4 spaces are used for indentation
+- Configure the editor to expand tabs to spaces
 
 ## Length of lines
 
-- The limit on length of lines is 80 characters.
+- The limit on length of lines is 80 characters
 
 ## Naming
 
@@ -58,7 +58,7 @@ Hungarian notation has banned it [[5]].
 - Macro names ares CAPITALIZED, but macros resembling functions may be
   named in lower case.
 
-Rational: [2] NL.9, [2] NL.10, [3]
+Rational: [[2]] NL.9, [[2]] NL.10, [[3]]
 
 ## Pointer declaration
 
@@ -71,11 +71,12 @@ int * p;    // don’t
 int*p;      // don’t
 ```
 
-Rational: [2] NL.18, [3]
+Rational: [[2]] NL.18, [[3]]
 
 ## K&R-derived layout
 
-We use the K&R-derived layout called "Stroustrup" as described in [2] NL.17.
+We use the K&R-derived layout called "Stroustrup" as described in
+[[2]] NL.17.
 
 **Reason**
 
