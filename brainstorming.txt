@@ -1,0 +1,56 @@
+
+- use std::lock_guard for critical sections
+
+- use prefix operator for hptsc implementation
+
+- provide pre- and postconditions checks resulting in a panic if
+  it fails.
+
+see Cpp Core Guideline I.6, I.7
+
+
+- check if the compiler supports the "requires" clause
+see Cpp Core Guideline I.9
+
+- Add note about exceptions to Coding Rule
+
+see Cpp Core Guideline I.10
+
+- Try out not_null<> for pointers.
+
+see Cpp Core Guideline I.12
+
+- Check if the GSL can be used for embedded systems
+
+- Check if https://github.com/philsquared/Catch can be used for tests.
+
+- F.9: Unused parameters should be unnamed
+
+- F.21: To return multiple “out” values, prefer returning a tuple or struct
+
+- F.60
+If you prefer the pointer notation (-> and/or * vs. .), not_null<T*>
+provides the same guarantee as T&.
+
+- Decide if we prefer pointer over reference, or not.
+
+- F.46: int is the return type for main()
+
+- C.21: If you define or =delete any default operation, define or =delete them all
+
+If you want a default implementation of a default operation (while
+defining another), write =default to show you’re doing so intentionally
+for that function. If you don’t want a default operation, suppress it
+with =delete.
+
+- C.33: If a class has an owning pointer member, define a destructor
+
+- C.36: A destructor may not fail
+
+Provide a special panic().
+
+- C.37: Make destructors noexcept
+
+Declare a destructor noexcept. That will ensure that it either completes normally or terminate the program.
+
+- calculate shift value as recursive template or with constexpr
