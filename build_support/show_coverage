@@ -1,0 +1,19 @@
+# Copyright (c) 2017, Franz Hollerer. All rights reserved.
+# This code is licensed under the MIT License (MIT).
+# See LICENSE file for full details.
+
+# This scrip runs a program which is compiled with clang to generate a
+# coverage data and creates a report.
+
+if [ $# -ne 1 ]; then
+    echo "usage: $0 file"
+fi
+
+export LLVM_PROFILE_FILE=$1.profraw
+
+eval $1
+
+llvm-profdata merge -sparse $LLVM_PROFILE_FILE -o $1.profdata
+llvm-cov show $1 -instr-profile=$1.profdata
+llvm-cov report $1 -instr-profile=$1.profdata
+

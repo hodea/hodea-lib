@@ -10,22 +10,29 @@
 
 export SOURCE_ROOT_DIR := $(CURDIR)
 
+CORE_FLAGS := -g -Wall -MD $(COVERAGE_FLAGS)
+
 ifndef DEBUG
     DEBUG = 0
 endif
 
 ifneq ($(DEBUG), 0)
-    CFLAGS_OPT := -O0
+    CORE_FLAGS += -O0
     BUILD_DIR := $(BUILD_ROOT_DIR)/debug
 else
-    CFLAGS_OPT := -O3
+    CORE_FLAGS += -O3
     BUILD_DIR := $(BUILD_ROOT_DIR)/release
 endif
 
-export CFLAGS := -g -MD $(CFLAGS_OPT) \
-    $(patsubst %,-I $(SOURCE_ROOT_DIR)/%,$(INCLUDE_DIRS))
+INCLUDE_FLAGS := $(patsubst %,-I $(SOURCE_ROOT_DIR)/%,$(INCLUDE_DIRS))
 
-export CXXFLAGS := $(CFLAGS)
+export CFLAGS := $(CORE_FLAGS) -std=c11 $(INCLUDE_FLAGS)
+
+export CXXFLAGS := $(CORE_FLAGS) -std=c++11 $(INCLUDE_FLAGS)
+
+export LDFLAGS := $(COVERAGE_FLAGS)
+
+BUILD_SUPPORT_DIR := $(SOURCE_ROOT_DIR)/$(HODEA_ROOT_DIR)/build_support
 
 # ---------------------------------------------------------- targets ---
 
@@ -33,7 +40,7 @@ export CXXFLAGS := $(CFLAGS)
 
 all release: $(BUILD_DIR)
 	$(MAKE) -C $(BUILD_DIR) \
-        -f $(SOURCE_ROOT_DIR)/$(HODEA_ROOT_DIR)/make/posix_hosted_build.mk \
+	-f $(BUILD_SUPPORT_DIR)/posix_hosted_build.make \
         $(TARGET)
 
 clean:
