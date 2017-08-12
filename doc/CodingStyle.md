@@ -9,6 +9,7 @@ This file describes the coding style used for the HODEA library.
 [3]: http://www.stroustrup.com/Programming/PPP-style-rev3.pdf
 [4]: https://en.wikipedia.org/wiki/Hungarian_notation
 [5]: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions
+[6]: https://llvm.org/docs/CodingStandards.html#namespace-indentation
 
 [[1]] [Linux Kernel Coding Style][1]
 
@@ -20,6 +21,7 @@ This file describes the coding style used for the HODEA library.
 
 [[5]] [Microsoft .NET General Naming Convention][5]
 
+[[6]] [LLVM Coding Standard][6]
 
 ## C++ Core Guidelines
 
@@ -152,4 +154,31 @@ else {
 ```
 
 Note: Stroustrup does not use a "cuddled else", so we don't either.
+
+## Indentation of namespace, public and private keyword
+
+We don't indent namespaces. The public and private keyword is aligned with
+the class keyword.
+
+Example taken from [[6]]:
+
+```cpp
+namespace llvm {
+namespace knowledge {
+
+/// This class represents things that Smith can have an intimate
+/// understanding of and contains the data associated with it.
+class Grokable {
+...
+public:
+  explicit Grokable() { ... }
+  virtual ~Grokable() = 0;
+
+  ...
+
+};
+
+} // end namespace knowledge
+} // end namespace llvmpp
+```
 
