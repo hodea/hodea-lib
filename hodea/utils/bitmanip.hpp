@@ -15,7 +15,7 @@
  * operations on unsigned types to avoid problems caused by integer
  * propagation.
  *
- * @note
+ * \note
  * Integer promotion arising when bitwise operators are applied to small
  * unsigned types can lead to confusion. For example a bitwise complement
  * operation on an operand of type unsigned char will generally yield a
@@ -37,12 +37,12 @@
  * v |= m; // on 32-bit machine: v gets 0xffffffff instead of 0xff
  * endcode
  *
- * In this example the variable @a m has the wrong type in first place.
+ * In this example the variable \a m has the wrong type in first place.
  * But we want our bit manipulation functions to behave reasonable as
  * they don't introduce any constrains on the types with which they are
  * used.
  *
- * @author f.hollerer@gmx.net
+ * \author f.hollerer@gmx.net
  */
 #if !defined _HODEA_BITMANIP_HPP_
 #define _HODEA_BITMANIP_HPP_
@@ -57,15 +57,45 @@ namespace hodea {
 typedef bool Bit_value;
 
 /**
+ * Class to construct a bitmask.
+ *
+ * This class can be used to construct a bitmask.
+ *
+ * Example:
+ * \code
+ * unsigned msk = Bitmask<>{}.bit(0).bit(2); // gives 0x5
+ * \endcode
+ */
+template <
+    class T = unsigned,
+    class = typename std::enable_if<std::is_unsigned<T>::value>::type
+    >
+class Bitmask{
+public:
+    constexpr Bitmask(T msk = 0) : msk{msk} {}
+
+    constexpr operator T() const {return msk;}
+    
+    constexpr Bitmask bit(unsigned pos) const
+    {   
+        return Bitmask{msk | (Bitmask{1} << pos)};
+    }   
+
+private:
+    T msk;
+};
+
+
+/**
  * Clear a single bit or multiple bits in a variable.
  *
- * @param[in,out] var
+ * \param[in,out] var
  *      Reference to the variable where to clear the bit(s).
- * @param[in] msk
+ * \param[in] msk
  *      Bitmask selecting the bit(s) to clear.
  *
- * @note
- * @a var can also be a peripheral device register qualified volatile.
+ * \note
+ * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_MSK>
 static inline void clr_bit(T_VAR& var, T_MSK msk)
@@ -77,13 +107,13 @@ static inline void clr_bit(T_VAR& var, T_MSK msk)
 /**
  * Set a single bit or multiple bits in a variable.
  *
- * @param[in,out] var
+ * \param[in,out] var
  *      Reference to the variable where to set the bit(s).
- * @param[in] msk
+ * \param[in] msk
  *      Bitmask selecting the bit(s) to set.
  *
- * @note
- * @a var can also be a peripheral device register qualified volatile.
+ * \note
+ * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_MSK>
 static inline void set_bit(T_VAR& var, T_MSK msk)
@@ -95,16 +125,16 @@ static inline void set_bit(T_VAR& var, T_MSK msk)
 /**
  * Set bit(s) to a given value.
  *
- * @param[in,out] var
+ * \param[in,out] var
  *      Reference to the variable where to set or clear bit(s).
- * @param[in] msk
+ * \param[in] msk
  *      Bitmask selecting the bit(s).
- * @param[in] val
+ * \param[in] val
  *      The new value for the selected bit(s). If 0 (false) the selected
  *      bit(s) is/are cleared, otherwise set.
  *
- * @note
- * @a var can also be a peripheral device register qualified volatile.
+ * \note
+ * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_MSK>
 static inline void set_bit_value(T_VAR& var, T_MSK msk, Bit_value val)
@@ -121,28 +151,28 @@ static inline void set_bit_value(T_VAR& var, T_MSK msk, Bit_value val)
  * This function can be used to updated several bits at once by clearing
  * and setting them accordingly.
  *
- * It reads @a var at the begin of functions, and writes it back after
+ * It reads \a var at the begin of functions, and writes it back after
  * applying the clear and set operations.
  *
  * For the bit operations it first clears all bits as specified in
- * @a clr_msk,
- * and then sets the bits given in @a set_msk.
+ * \a clr_msk,
+ * and then sets the bits given in \a set_msk.
  *
- * Rational: @a var can be a peripheral device register qualified volatile.
- * Using @a clr_bit() and @set_bit() in series would result in multiple
+ * Rational: \a var can be a peripheral device register qualified volatile.
+ * Using \a clr_bit() and \a set_bit() in series would result in multiple
  * read-modify-write cycles, with each access effecting the functioning
- * of the hardware. Ensuring that the @var is only read and written
+ * of the hardware. Ensuring that the \var is only read and written
  * once we avoid this problem.
  *
- * @param[in,out] var
+ * \param[in,out] var
  *      Reference to the variable where to clear and set bit(s).
- * @param[in] clr_msk
+ * \param[in] clr_msk
  *      Bitmask selecting the bit(s) to clear.
- * @param[in] set_msk
+ * \param[in] set_msk
  *      Bitmask selecting the bit(s) to set.
  *
- * @note
- * @a var can also be a peripheral device register qualified volatile.
+ * \note
+ * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_CLR_MSK, typename T_SET_MSK>
 static inline void modify_bits(
@@ -164,14 +194,14 @@ static inline void modify_bits(
 /**
  * Test if at lease one of the given bits is set.
  *
- * @param[in] value
+ * \param[in] value
  *      The value to tests for the given bit(s).
- * @param[in] msk
+ * \param[in] msk
  *      Bitmask selecting the bit(s) to test.
  *
- * @returns
- *      Returns true if at least one of the bits specified in @a msk
- *      is set in @a val, false otherwise.
+ * \returns
+ *      Returns true if at least one of the bits specified in \a msk
+ *      is set in \a val, false otherwise.
  */
 template <typename T_VALUE, typename T_MSK>
 static inline bool is_bit_set(T_VALUE val, T_MSK msk)
@@ -186,13 +216,13 @@ static inline bool is_bit_set(T_VALUE val, T_MSK msk)
 /**
  * Test if all of the given bits are set.
  *
- * @param[in] value
+ * \param[in] value
  *      The value to tests for the given bit(s).
- * @param[in] msk
+ * \param[in] msk
  *      Bitmask selecting the bit(s) to test.
  *
- * @returns
- *      Returns true if all bits specified in @a msk are set in @a val,
+ * \returns
+ *      Returns true if all bits specified in \a msk are set in \a val,
  *      false otherwise.
  */
 template <typename T_VALUE, typename T_MSK>
