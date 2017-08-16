@@ -54,3 +54,5 @@ Provide a special panic().
 Declare a destructor noexcept. That will ensure that it either completes normally or terminate the program.
 
 - calculate shift value as recursive template or with constexpr
+
+- provide array_size as constexpr template function
