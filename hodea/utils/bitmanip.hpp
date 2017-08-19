@@ -47,6 +47,8 @@
 #if !defined _HODEA_BITMANIP_HPP_
 #define _HODEA_BITMANIP_HPP_
 
+#include <climits>
+
 namespace hodea {
 
 /**
@@ -78,13 +80,26 @@ public:
     
     constexpr Bitmask bit(unsigned pos) const
     {   
-        return Bitmask{msk | (Bitmask{1} << pos)};
+        return Bitmask(msk | (Bitmask{1} << pos));
     }   
 
 private:
     T msk;
 };
 
+/**
+ * Convert bit position to a mask.
+ *
+ * \param[in] pos Position of a single bit.
+ *
+ * \returns
+ *      Bitmask with the bit in the given position set.
+ */
+template <typename T = unsigned>
+constexpr T bit_to_msk(unsigned pos)
+{
+    return T{1} << pos;
+}
 
 /**
  * Clear a single bit or multiple bits in a variable.
@@ -98,7 +113,7 @@ private:
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_MSK>
-static inline void clr_bit(T_VAR& var, T_MSK msk)
+void clr_bit(T_VAR& var, T_MSK msk)
 {
     static_cast<typename std::make_unsigned<T_VAR>::type &>(var) &=
         ~static_cast<typename std::make_unsigned<T_MSK>::type>(msk);
@@ -116,7 +131,7 @@ static inline void clr_bit(T_VAR& var, T_MSK msk)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_MSK>
-static inline void set_bit(T_VAR& var, T_MSK msk)
+void set_bit(T_VAR& var, T_MSK msk)
 {
     static_cast<typename std::make_unsigned<T_VAR>::type &>(var) |=
         static_cast<typename std::make_unsigned<T_MSK>::type>(msk);
@@ -137,7 +152,7 @@ static inline void set_bit(T_VAR& var, T_MSK msk)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_MSK>
-static inline void set_bit_value(T_VAR& var, T_MSK msk, Bit_value val)
+void set_bit_value(T_VAR& var, T_MSK msk, Bit_value val)
 {
     if (val)
         set_bit(var, msk);
@@ -175,7 +190,7 @@ static inline void set_bit_value(T_VAR& var, T_MSK msk, Bit_value val)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <typename T_VAR, typename T_CLR_MSK, typename T_SET_MSK>
-static inline void modify_bits(
+void modify_bits(
     T_VAR& var, T_CLR_MSK clr_msk, T_SET_MSK set_msk
     )
 {
@@ -204,7 +219,7 @@ static inline void modify_bits(
  *      is set in \a val, false otherwise.
  */
 template <typename T_VALUE, typename T_MSK>
-static inline bool is_bit_set(T_VALUE val, T_MSK msk)
+bool is_bit_set(T_VALUE val, T_MSK msk)
 {
     typename std::remove_volatile<
         typename std::make_unsigned<T_VALUE>::type>::type uval = val;
@@ -226,7 +241,7 @@ static inline bool is_bit_set(T_VALUE val, T_MSK msk)
  *      false otherwise.
  */
 template <typename T_VALUE, typename T_MSK>
-static inline bool are_all_bits_set(T_VALUE val, T_MSK msk)
+bool are_all_bits_set(T_VALUE val, T_MSK msk)
 {
     typename std::remove_volatile<
         typename std::make_unsigned<T_VALUE>::type>::type uval = val;
@@ -238,6 +253,3 @@ static inline bool are_all_bits_set(T_VALUE val, T_MSK msk)
 } // namespace hodea
 
 #endif /*!_HODEA_BITMANIP_HPP_ */
-
-
-
