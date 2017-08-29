@@ -23,7 +23,7 @@ $(TARGET).hex: $(TARGET).elf
 	$(OBJCOPY) -Oihex $< $@
 
 $(AS_OBJ_FILES):
-	$(CC) $(CFLAGS) -c $(SOURCE_ROOT_DIR)/$(basename $@) -o $@
+	$(CC) $(ASLAGS) -c $(SOURCE_ROOT_DIR)/$(basename $@) -o $@
 
 $(C_OBJ_FILES):
 	$(CC) $(CFLAGS) -c $(SOURCE_ROOT_DIR)/$(basename $@) -o $@

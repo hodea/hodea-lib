@@ -10,7 +10,7 @@
 
 export SOURCE_ROOT_DIR := $(CURDIR)
 
-CORE_FLAGS += -g -Wall -MD $(foreach define, $(DEFINES), -D$(define))
+CORE_FLAGS += -g -Wall -MD -ffreestanding $(USER_FLAGS)
 
 DEBUG ?= 0
 
@@ -24,12 +24,16 @@ endif
 
 INCLUDE_FLAGS := $(patsubst %,-I $(SOURCE_ROOT_DIR)/%,$(INCLUDE_DIRS))
 
+export ASFLAGS := $(CORE_FLAGS)
+
 export CFLAGS := $(CORE_FLAGS) -std=c11 $(INCLUDE_FLAGS)
 
 export CXXFLAGS := $(CORE_FLAGS) -std=c++11 $(INCLUDE_FLAGS)
 
 export LDFLAGS := \
-    --specs=nosys.specs -T$(SOURCE_ROOT_DIR)/$(LINKER_SCRIPT) \
+    $(CORE_FLAGS) \
+    --specs=nano.specs --specs=nosys.specs \
+    -T$(SOURCE_ROOT_DIR)/$(LINKER_SCRIPT) \
     -Xlinker -Map=$(TARGET).map
 
 
