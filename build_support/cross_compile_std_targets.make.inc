@@ -10,7 +10,7 @@
 
 export SOURCE_ROOT_DIR := $(CURDIR)
 
-CORE_FLAGS := -g -Wall -MD $(COVERAGE_FLAGS)
+CORE_FLAGS += -g -Wall -MD $(foreach define, $(DEFINES), -D$(define))
 
 DEBUG ?= 0
 
@@ -28,7 +28,10 @@ export CFLAGS := $(CORE_FLAGS) -std=c11 $(INCLUDE_FLAGS)
 
 export CXXFLAGS := $(CORE_FLAGS) -std=c++11 $(INCLUDE_FLAGS)
 
-export LDFLAGS := $(COVERAGE_FLAGS)
+export LDFLAGS := \
+    --specs=nosys.specs -T$(SOURCE_ROOT_DIR)/$(LINKER_SCRIPT) \
+    -Xlinker -Map=$(TARGET).map
+
 
 BUILD_SUPPORT_DIR := $(SOURCE_ROOT_DIR)/$(HODEA_ROOT_DIR)/build_support
 
@@ -38,8 +41,8 @@ BUILD_SUPPORT_DIR := $(SOURCE_ROOT_DIR)/$(HODEA_ROOT_DIR)/build_support
 
 all release: $(BUILD_DIR)
 	$(MAKE) -C $(BUILD_DIR) \
-	-f $(BUILD_SUPPORT_DIR)/posix_hosted_build.make \
-        $(TARGET)
+	-f $(BUILD_SUPPORT_DIR)/cross_compile_build.make \
+        $(TARGET).bin $(TARGET).hex
 
 clean:
 	rm -rf $(BUILD_ROOT_DIR)
@@ -48,7 +51,8 @@ debug:
 	$(MAKE) DEBUG=1 all
 
 $(BUILD_DIR):
-	for d in $(dir $(C_SOURCE_FILES) $(CXX_SOURCE_FILES)) ; do \
+	for d in $(dir $(AS_SOURCE_FILES) $(C_SOURCE_FILES) \
+            $(CXX_SOURCE_FILES)) ; do \
 		mkdir -p $(BUILD_DIR)/$$d;  \
 	done
 
