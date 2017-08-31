@@ -3,7 +3,7 @@
 # See LICENSE file for full details.
 
 # This makefile is executed within the build directory to build the
-# given target for a "posix_hosted" system.
+# given target.
 
 AS_OBJ_FILES := $(addsuffix .o, $(AS_SOURCE_FILES))
 C_OBJ_FILES := $(addsuffix .o, $(C_SOURCE_FILES))
