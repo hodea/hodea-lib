@@ -23,10 +23,9 @@ endif
 
 export SOURCE_ROOT_DIR := $(CURDIR)
 
-CORE_FLAGS += \
-    -g -Wall -MD -ffreestanding -ffunction-sections -fdata-sections \
-    -fno-common -fshort-wchar -static \
-    $(USER_FLAGS)
+CORE_FLAGS := \
+     -g -Wall -MD -ffreestanding -ffunction-sections -fdata-sections \
+     -fno-common $(USER_FLAGS)
 
 DEBUG ?= 0
 
