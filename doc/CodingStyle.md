@@ -10,6 +10,7 @@ This file describes the coding style used for the HODEA library.
 [4]: https://en.wikipedia.org/wiki/Hungarian_notation
 [5]: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions
 [6]: https://llvm.org/docs/CodingStandards.html#namespace-indentation
+[7]: https://channel9.msdn.com/Events/GoingNative/2013/Interactive-Panel-Ask-Us-Anything
 
 [[1]] [Linux Kernel Coding Style][1]
 
@@ -22,6 +23,8 @@ This file describes the coding style used for the HODEA library.
 [[5]] [Microsoft .NET General Naming Convention][5]
 
 [[6]] [LLVM Coding Standard][6]
+
+[[7]] [MSDN, Interactive Panel: Ask Us Anything, Aug 19, 2013][7]
 
 ## C++ Core Guidelines
 
@@ -181,4 +184,36 @@ public:
 } // end namespace knowledge
 } // end namespace llvmpp
 ```
+
+## int vs. unsigned
+
+We use unsigned for bit patterns or when we rely on two's complement
+arithmetic, otherwise we use int.
+
+Rational: See [[7]] minute 09:45 to 13:10
+
+Andrei Alexandrescu:
+
+- No simple guideline.
+- In systems programming, we need integers of different sizes and
+  signedness.
+- Many conversions and arcane rules govern arithmetic (like for auto), so
+  we need to be careful.
+
+Chandler Carruth:
+
+- Here's some simple guidelines:
+  1. Use signed integers unless you need two's complement arithmetic or a
+     bit pattern
+  2. Use the smallest integer that will suffice.
+  3. Otherwise, use int if you think you could count the items, and a
+     64-bit integer if it's even more than you would want to count.
+- Stop worrying and use tools to tell you when you need a different type
+  or size.
+
+Bjarne Stroustrup:
+
+- Use int until you have a reason not to.
+- Don't use unsigned unless you are fiddling with bit patterns.
+- Never mix signed and unsigned.
 
