@@ -47,8 +47,6 @@
 #if !defined _HODEA_BIT_MANIP_HPP_
 #define _HODEA_BIT_MANIP_HPP_
 
-#include <climits>
-
 namespace hodea {
 
 /**
@@ -78,7 +76,7 @@ public:
 
     constexpr operator T() const {return msk;}
     
-    constexpr Bitmask bit(unsigned pos) const
+    constexpr Bitmask bit(int pos) const
     {   
         return Bitmask(msk | (Bitmask{1} << pos));
     }   
@@ -99,7 +97,7 @@ template <
     typename T = unsigned,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-constexpr T bit_to_msk(unsigned pos)
+constexpr T bit_to_msk(int pos)
 {
     return T{1} << pos;
 }
@@ -149,7 +147,7 @@ void set_bit(T_V& var, T_M msk)
 }
 
 /**
- * Set bit(s) to a given value.
+ * Set a single bit or multiple bits to a given value.
  *
  * \param[in,out] var
  *      Reference to the variable where to set or clear bit(s).

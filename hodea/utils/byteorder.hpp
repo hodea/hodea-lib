@@ -61,7 +61,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch8(T& dst, const uint8_t *buf)
+int fetch8(T& dst, const uint8_t *buf)
 {
     uint8_t v;
 
@@ -83,7 +83,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch16_le(T& dst, const uint8_t *buf)
+int fetch16_le(T& dst, const uint8_t *buf)
 {
     uint16_t v;
 
@@ -105,7 +105,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch32_le(T& dst, const uint8_t *buf)
+int fetch32_le(T& dst, const uint8_t *buf)
 {
     uint32_t v;
 
@@ -131,7 +131,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch64_le(T& dst, const uint8_t *buf)
+int fetch64_le(T& dst, const uint8_t *buf)
 {
     uint64_t v;
 
@@ -161,7 +161,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch16_be(T& dst, const uint8_t *buf)
+int fetch16_be(T& dst, const uint8_t *buf)
 {
     uint16_t v;
 
@@ -183,7 +183,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch32_be(T& dst, const uint8_t *buf)
+int fetch32_be(T& dst, const uint8_t *buf)
 {
     uint32_t v;
 
@@ -209,7 +209,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned fetch64_be(T& dst, const uint8_t *buf)
+int fetch64_be(T& dst, const uint8_t *buf)
 {
     uint64_t v;
 
@@ -239,7 +239,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned store8(uint8_t *buf, const T val)
+int store8(uint8_t *buf, const T val)
 {
     const uint8_t uval = val;
 
@@ -260,7 +260,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned store16_le(uint8_t *buf, const T val)
+int store16_le(uint8_t *buf, const T val)
 {
     const uint16_t uval = val;
 
@@ -282,7 +282,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-static inline unsigned store32_le(uint8_t *buf, const T val)
+static inline int store32_le(uint8_t *buf, const T val)
 {
     const uint32_t uval = val;
 
@@ -306,7 +306,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-static inline unsigned store64_le(uint8_t *buf, const T val)
+static inline int store64_le(uint8_t *buf, const T val)
 {
     const uint64_t uval = val;
 
@@ -334,7 +334,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-unsigned store16_be(uint8_t *buf, const T val)
+int store16_be(uint8_t *buf, const T val)
 {
     const uint16_t uval = val;
 
@@ -356,7 +356,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-static inline unsigned store32_be(uint8_t *buf, const T val)
+static inline int store32_be(uint8_t *buf, const T val)
 {
     const uint32_t uval = val;
 
@@ -380,7 +380,7 @@ template <
     typename T,
     typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-static inline unsigned store64_be(uint8_t *buf, const T val)
+static inline int store64_be(uint8_t *buf, const T val)
 {
     const uint64_t uval = val;
 
