@@ -395,6 +395,24 @@ static inline int store64_be(uint8_t *buf, const T val)
     return sizeof(uval);
 }
 
+#include <endian.h>
+
+/**
+ * Test if CPU uses the little endian format.
+ */
+constexpr bool is_cpu_little_endian()
+{
+    return ((*(uint16_t*) "\0\xff") == 0xff00);
+}
+
+/**
+ * Test if CPU uses the big endian format.
+ */
+constexpr bool is_cpu_big_endian()
+{
+    return ((*(uint16_t*) "\0\xff") == 0x00ff);
+}
+
 } // namespace hodea
 
 #endif /*!_HODEA_BYTEORDER_HPP_ */
