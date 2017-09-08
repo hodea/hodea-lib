@@ -3,7 +3,7 @@
 // See LICENSE file for full details.
 
 /**
- * Functions to serialize and de-serialize numbers in different byte order.
+ * Functions to serialize and deserialize numbers in different byte order.
  *
  * Example for serialization:
  *
@@ -19,7 +19,7 @@
  * send_msg(buf, p - buf);
  * \endcode
  *
- * Example for de-serialization:
+ * Example for deserialization:
  *
  * \code
  * uint8_t buf[100];
@@ -41,8 +41,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BYTEORDER_HPP_
-#define _HODEA_BYTEORDER_HPP_
+#if !defined _HODEA_SERIALIZATION_HPP_
+#define _HODEA_SERIALIZATION_HPP_
 
 #include <stdint.h>
 
@@ -395,24 +395,6 @@ static inline int store64_be(uint8_t *buf, const T val)
     return sizeof(uval);
 }
 
-#include <endian.h>
-
-/**
- * Test if CPU uses the little endian format.
- */
-constexpr bool is_cpu_little_endian()
-{
-    return ((*(uint16_t*) "\0\xff") == 0xff00);
-}
-
-/**
- * Test if CPU uses the big endian format.
- */
-constexpr bool is_cpu_big_endian()
-{
-    return ((*(uint16_t*) "\0\xff") == 0x00ff);
-}
-
 } // namespace hodea
 
-#endif /*!_HODEA_BYTEORDER_HPP_ */
+#endif /*!_HODEA_SERIALIZATION_HPP_ */
