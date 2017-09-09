@@ -19,7 +19,7 @@
 #define _HODEA_CPU_ENDIAN_HPP_
 
 #include <stdint.h>
-#include <hodea/utils/ureverse.hpp>
+#include <hodea/utils/uswap.hpp>
 
 namespace hodea {
 
@@ -95,7 +95,95 @@ constexpr bool is_cpu_be()
  */
 static inline constexpr uint16_t cpu_to_le16(uint16_t x)
 {
-    return (is_cpu_le() ? x : urev16(x));
+    return (is_cpu_le() ? x : uswap16(x));
+}
+
+/**
+ * Convert unsigned 32 bit value in CPU byte order to little endian.
+ */
+static inline constexpr uint32_t cpu_to_le32(uint32_t x)
+{
+    return (is_cpu_le() ? x : uswap32(x));
+}
+
+/**
+ * Convert unsigned 64 bit value in CPU byte order to little endian.
+ */
+static inline constexpr uint64_t cpu_to_le64(uint64_t x)
+{
+    return (is_cpu_le() ? x : uswap64(x));
+}
+
+/**
+ * Convert unsigned 16 bit value in CPU byte order to big endian.
+ */
+static inline constexpr uint16_t cpu_to_be16(uint16_t x)
+{
+    return (is_cpu_be() ? x : uswap16(x));
+}
+
+/**
+ * Convert unsigned 32 bit value in CPU byte order to big endian.
+ */
+static inline constexpr uint32_t cpu_to_be32(uint32_t x)
+{
+    return (is_cpu_be() ? x : uswap32(x));
+}
+
+/**
+ * Convert unsigned 64 bit value in CPU byte order to big endian.
+ */
+static inline constexpr uint64_t cpu_to_be64(uint64_t x)
+{
+    return (is_cpu_be() ? x : uswap64(x));
+}
+
+/**
+ * Convert unsigned 16 bit value in little endian to CPU byte order.
+ */
+static inline constexpr uint16_t le16_to_cpu(uint16_t x)
+{
+    return cpu_to_le16(x);
+}
+
+/**
+ * Convert unsigned 32 bit value in little endian to CPU byte order.
+ */
+static inline constexpr uint32_t le32_to_cpu(uint32_t x)
+{
+    return cpu_to_le32(x);
+}
+
+/**
+ * Convert unsigned 64 bit value in little endian to CPU byte order.
+ */
+static inline constexpr uint64_t le64_to_cpu(uint64_t x)
+{
+    return cpu_to_le64(x);
+}
+
+/**
+ * Convert unsigned 16 bit value in big endian to CPU byte order.
+ */
+static inline constexpr uint16_t be16_to_cpu(uint16_t x)
+{
+    return cpu_to_be16(x);
+}
+
+/**
+ * Convert unsigned 32 bit value in big endian to CPU byte order.
+ */
+static inline constexpr uint32_t be32_to_cpu(uint32_t x)
+{
+    return cpu_to_be32(x);
+}
+
+/**
+ * Convert unsigned 64 bit value in big endian to CPU byte order.
+ */
+static inline constexpr uint64_t be64_to_cpu(uint64_t x)
+{
+    return cpu_to_be64(x);
 }
 
 } // namespace hodea

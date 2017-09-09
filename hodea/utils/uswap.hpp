@@ -7,8 +7,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_UREVERSE_HPP_
-#define _HODEA_UREVERSE_HPP_
+#if !defined _HODEA_USWAP_HPP_
+#define _HODEA_USWAP_HPP_
 
 #include <stdint.h>
 
@@ -22,7 +22,7 @@ namespace hodea {
  * \returns
  *      Unsigned 16 bit value with reversed byte order.
  */
-static inline constexpr uint16_t urev16(uint16_t x)
+static inline constexpr uint16_t uswap16(uint16_t x)
 {
     return ((x & 0xff00U) >> 8) | ((x & 0x00ffU) << 8);
 }
@@ -35,7 +35,7 @@ static inline constexpr uint16_t urev16(uint16_t x)
  * \returns
  *      Unsigned 32 bit value with reversed byte order.
  */
-static inline constexpr uint32_t urev32(uint32_t x)
+static inline constexpr uint32_t uswap32(uint32_t x)
 {
     return ((x & 0xff000000U) >> 24) |
            ((x & 0x00ff0000U) >>  8) |
@@ -51,18 +51,18 @@ static inline constexpr uint32_t urev32(uint32_t x)
  * \returns
  *      Unsigned 64 bit value with reversed byte order.
  */
-static inline constexpr uint64_t urev64(uint64_t x)
+static inline constexpr uint64_t uswap64(uint64_t x)
 {
-    return ((x & 0xff00000000000000LLU) >> 56) |
-           ((x & 0x00ff000000000000LLU) >> 40) |
-           ((x & 0x0000ff0000000000LLU) >> 24) |
-           ((x & 0x000000ff00000000LLU) >>  8) |
-           ((x & 0x00000000ff000000LLU) <<  8) |
-           ((x & 0x0000000000ff0000LLU) << 24) |
-           ((x & 0x000000000000ff00LLU) << 40) |
-           ((x & 0x00000000000000FFLLU) << 56);
+    return ((x & 0xff00000000000000ULL) >> 56) |
+           ((x & 0x00ff000000000000ULL) >> 40) |
+           ((x & 0x0000ff0000000000ULL) >> 24) |
+           ((x & 0x000000ff00000000ULL) >>  8) |
+           ((x & 0x00000000ff000000ULL) <<  8) |
+           ((x & 0x0000000000ff0000ULL) << 24) |
+           ((x & 0x000000000000ff00ULL) << 40) |
+           ((x & 0x00000000000000FFULL) << 56);
 }
 
 } // namespace hodea
 
-#endif /*!_HODEA_UREVERSE_HPP_ */
+#endif /*!_HODEA_USWAP_HPP_ */
