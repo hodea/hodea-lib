@@ -10,7 +10,7 @@
 #if !defined _HODEA_USWAP_HPP_
 #define _HODEA_USWAP_HPP_
 
-#include <stdint.h>
+#include <hodea/utils/cstdint.hpp>
 
 namespace hodea {
 

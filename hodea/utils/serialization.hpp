@@ -44,7 +44,7 @@
 #if !defined _HODEA_SERIALIZATION_HPP_
 #define _HODEA_SERIALIZATION_HPP_
 
-#include <stdint.h>
+#include <hodea/utils/cstdint.hpp>
 
 namespace hodea {
 
