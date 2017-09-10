@@ -18,8 +18,8 @@
 #if !defined _HODEA_CPU_ENDIAN_HPP_
 #define _HODEA_CPU_ENDIAN_HPP_
 
-#include <hodea/utils/cstdint.hpp>
-#include <hodea/utils/uswap.hpp>
+#include <hodea/core/cstdint.hpp>
+#include <hodea/core/uswap.hpp>
 
 namespace hodea {
 
