@@ -47,6 +47,8 @@
 #if !defined _HODEA_BIT_MANIP_HPP_
 #define _HODEA_BIT_MANIP_HPP_
 
+#include <type_traits>
+
 namespace hodea {
 
 /**

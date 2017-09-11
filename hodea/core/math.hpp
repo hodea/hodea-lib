@@ -10,6 +10,7 @@
 #if !defined _HODEA_MATH_HPP_
 #define _HODEA_MATH_HPP_
 
+#include <type_traits>
 #include <algorithm>
 
 namespace hodea {
