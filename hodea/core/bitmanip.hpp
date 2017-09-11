@@ -103,7 +103,7 @@ constexpr T bit_to_msk(int pos)
 }
 
 /**
- * Clear a single bit or multiple bits in a variable.
+ * Clear a single bit or multiple bits.
  *
  * \param[in,out] var
  *      Reference to the variable where to clear the bit(s).
@@ -125,7 +125,7 @@ void clr_bit(T_V& var, T_M msk)
 }
 
 /**
- * Set a single bit or multiple bits in a variable.
+ * Set a single bit or multiple bits.
  *
  * \param[in,out] var
  *      Reference to the variable where to set the bit(s).
@@ -222,6 +222,28 @@ void modify_bits(
     set_bit(uvar, set_msk);
 
     var = uvar;
+}
+
+/**
+ * Toggle a single bit or multiple bits.
+ *
+ * \param[in,out] var
+ *      Reference to the variable where to toggle the bit(s).
+ * \param[in] msk
+ *      Bitmask selecting the bit(s) to toggle.
+ *
+ * \note
+ * \a var can also be a peripheral device register qualified volatile.
+ */
+template <
+    typename T_V, typename T_M,
+    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename = typename std::enable_if<std::is_integral<T_M>::value>::type
+    >
+void toggle_bit(T_V& var, T_M msk)
+{
+    static_cast<typename std::make_unsigned<T_V>::type &>(var) ^=
+        static_cast<typename std::make_unsigned<T_M>::type>(msk);
 }
 
 /**
