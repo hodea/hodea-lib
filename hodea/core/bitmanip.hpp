@@ -118,7 +118,8 @@ constexpr T bit_to_msk(int pos)
 template <
     typename T_V, typename T_M,
     typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_M>::value>::type
+    typename = typename std::enable_if<
+        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
     >
 void clr_bit(T_V& var, T_M msk)
 {
@@ -140,7 +141,8 @@ void clr_bit(T_V& var, T_M msk)
 template <
     typename T_V, typename T_M,
     typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_M>::value>::type
+    typename = typename std::enable_if<
+        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
     >
 void set_bit(T_V& var, T_M msk)
 {
@@ -165,7 +167,8 @@ void set_bit(T_V& var, T_M msk)
 template <
     typename T_V, typename T_M,
     typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_M>::value>::type
+    typename = typename std::enable_if<
+        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
     >
 void set_bit_value(T_V& var, T_M msk, Bit_value val)
 {
@@ -207,8 +210,10 @@ void set_bit_value(T_V& var, T_M msk, Bit_value val)
 template <
     typename T_V, typename T_CM, typename T_SM,
     typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_CM>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_SM>::value>::type
+    typename = typename std::enable_if<
+        std::is_integral<T_CM>::value || std::is_enum<T_CM>::value>::type,
+    typename = typename std::enable_if<
+        std::is_integral<T_SM>::value || std::is_enum<T_SM>::value>::type
     >
 void modify_bits(
     T_V& var, T_CM clr_msk, T_SM set_msk
@@ -240,7 +245,8 @@ void modify_bits(
 template <
     typename T_V, typename T_M,
     typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_M>::value>::type
+    typename = typename std::enable_if<
+        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
     >
 void toggle_bit(T_V& var, T_M msk)
 {
@@ -263,7 +269,8 @@ void toggle_bit(T_V& var, T_M msk)
 template <
     typename T_V, typename T_M,
     typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
-    typename = typename std::enable_if<std::is_integral<T_M>::value>::type
+    typename = typename std::enable_if<
+        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
     >
 bool is_bit_set(T_V val, T_M msk)
 {
