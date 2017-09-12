@@ -13,24 +13,24 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_ENUM_BITMASK_HPP_
-#define _HODEA_ENUM_BITMASK_HPP_
+#if !defined _HODEA_SCOPED_ENUM_BITMASK_HPP_
+#define _HODEA_SCOPED_ENUM_BITMASK_HPP_
 
 #include <type_traits>
 
 namespace hodea {
 
-#define ENABLE_ENUM_BITMASK(x)          \
+#define ENABLE_SCOPED_ENUM_BITMASK(x)   \
 namespace hodea {                       \
 template<>                              \
-struct Enable_enum_bitmask<x>           \
+struct Enable_scoped_enum_bitmask<x>    \
 {                                       \
     static const bool enable = true;    \
 };                                      \
 }
 
 template<typename T_enum>  
-struct Enable_enum_bitmask  
+struct Enable_scoped_enum_bitmask  
 {
     static const bool enable = false;
 };
@@ -38,7 +38,7 @@ struct Enable_enum_bitmask
 template<
     typename T_enum, 
     typename = typename std::enable_if<
-        Enable_enum_bitmask<T_enum>::enable, T_enum >::type
+        Enable_scoped_enum_bitmask<T_enum>::enable, T_enum >::type
     >
 T_enum operator |(T_enum lhs, T_enum rhs)  
 {
@@ -53,7 +53,7 @@ template<
     typename T_enum, 
     typename T_underlying = typename std::underlying_type<T_enum>::type,
     typename = typename std::enable_if<
-        Enable_enum_bitmask<T_enum>::enable, T_enum >::type
+        Enable_scoped_enum_bitmask<T_enum>::enable, T_enum >::type
     >
 constexpr T_underlying to_underlying(T_enum e)
 {
@@ -62,4 +62,4 @@ constexpr T_underlying to_underlying(T_enum e)
 
 } // namespace hodea
 
-#endif /*!_HODEA_ENUM_BITMASK_HPP_ */
+#endif /*!_HODEA_SCOPED_ENUM_BITMASK_HPP_ */
