@@ -255,16 +255,22 @@ void toggle_bit(T_V& var, T_M msk)
 }
 
 /**
- * Test if all the specified bits are set.
+ * Test if a single bit or several bits are set.
  *
  * \param[in] value
  *      The value to test.
  * \param[in] msk
  *      Bitmask selecting a single bit or multiple bits to test.
+ * \param[in] need_all_bits_set
+ *      This parameter controls the test method. If \a need_all_bits_set
+ *      is true all selected bits must be set for the test to evaluate to
+ *      true. Otherwise if \a need_all_bits_set is false at least one of
+ *      the selected bits must be set for the test to evaluate to true.
+ *      Default: need_all_bits_set = false.
  *
  * \returns
- *      Returns true if all the bits specified in \a msk are set in
- *      \a val, false otherwise.
+ *      Returns true if bits are set according the selected test method,
+ *      false otherwise.
  */
 template <
     typename T_V, typename T_M,
@@ -272,13 +278,13 @@ template <
     typename = typename std::enable_if<
         std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
     >
-bool is_bit_set(T_V val, T_M msk)
+bool is_bit_set(T_V val, T_M msk, bool need_all_bits_set = false)
 {
     typename std::remove_volatile<
         typename std::make_unsigned<T_V>::type>::type uval = val;
     typename std::make_unsigned<T_M>::type umsk = msk;
-   
-    return ((uval & umsk) == umsk);
+
+    return (need_all_bits_set) ? ((uval & umsk) == umsk) : (uval & umsk);
 }
 
 } // namespace hodea
