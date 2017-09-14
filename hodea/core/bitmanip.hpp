@@ -44,8 +44,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BIT_MANIP_HPP_
-#define _HODEA_BIT_MANIP_HPP_
+#if !defined _HODEA_BIT_mANIP_HPP_
+#define _HODEA_BIT_mANIP_HPP_
 
 #include <type_traits>
 
@@ -116,15 +116,15 @@ constexpr T bit_to_msk(int pos)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <
-    typename T_V, typename T_M,
-    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename T_v, typename T_m,
+    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
+        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
     >
-void clr_bit(T_V& var, T_M msk)
+void clr_bit(T_v& var, T_m msk)
 {
-    static_cast<typename std::make_unsigned<T_V>::type &>(var) &=
-        ~static_cast<typename std::make_unsigned<T_M>::type>(msk);
+    static_cast<typename std::make_unsigned<T_v>::type &>(var) &=
+        ~static_cast<typename std::make_unsigned<T_m>::type>(msk);
 }
 
 /**
@@ -139,15 +139,15 @@ void clr_bit(T_V& var, T_M msk)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <
-    typename T_V, typename T_M,
-    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename T_v, typename T_m,
+    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
+        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
     >
-void set_bit(T_V& var, T_M msk)
+void set_bit(T_v& var, T_m msk)
 {
-    static_cast<typename std::make_unsigned<T_V>::type &>(var) |=
-        static_cast<typename std::make_unsigned<T_M>::type>(msk);
+    static_cast<typename std::make_unsigned<T_v>::type &>(var) |=
+        static_cast<typename std::make_unsigned<T_m>::type>(msk);
 }
 
 /**
@@ -165,12 +165,12 @@ void set_bit(T_V& var, T_M msk)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <
-    typename T_V, typename T_M,
-    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename T_v, typename T_m,
+    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
+        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
     >
-void set_bit_value(T_V& var, T_M msk, Bit_value val)
+void set_bit_value(T_v& var, T_m msk, Bit_value val)
 {
     if (val)
         set_bit(var, msk);
@@ -208,19 +208,19 @@ void set_bit_value(T_V& var, T_M msk, Bit_value val)
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <
-    typename T_V, typename T_CM, typename T_SM,
-    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename T_v, typename T_cm, typename T_sm,
+    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_CM>::value || std::is_enum<T_CM>::value>::type,
+        std::is_integral<T_cm>::value || std::is_enum<T_cm>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_SM>::value || std::is_enum<T_SM>::value>::type
+        std::is_integral<T_sm>::value || std::is_enum<T_sm>::value>::type
     >
 void modify_bits(
-    T_V& var, T_CM clr_msk, T_SM set_msk
+    T_v& var, T_cm clr_msk, T_sm set_msk
     )
 {
     typename std::remove_volatile<
-        typename std::make_unsigned<T_V>::type>::type uvar;
+        typename std::make_unsigned<T_v>::type>::type uvar;
 
     uvar = var;
 
@@ -243,15 +243,15 @@ void modify_bits(
  * \a var can also be a peripheral device register qualified volatile.
  */
 template <
-    typename T_V, typename T_M,
-    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename T_v, typename T_m,
+    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
+        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
     >
-void toggle_bit(T_V& var, T_M msk)
+void toggle_bit(T_v& var, T_m msk)
 {
-    static_cast<typename std::make_unsigned<T_V>::type &>(var) ^=
-        static_cast<typename std::make_unsigned<T_M>::type>(msk);
+    static_cast<typename std::make_unsigned<T_v>::type &>(var) ^=
+        static_cast<typename std::make_unsigned<T_m>::type>(msk);
 }
 
 /**
@@ -273,20 +273,20 @@ void toggle_bit(T_V& var, T_M msk)
  *      false otherwise.
  */
 template <
-    typename T_V, typename T_M,
-    typename = typename std::enable_if<std::is_integral<T_V>::value>::type,
+    typename T_v, typename T_m,
+    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
     typename = typename std::enable_if<
-        std::is_integral<T_M>::value || std::is_enum<T_M>::value>::type
+        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
     >
-bool is_bit_set(T_V val, T_M msk, bool need_all_bits_set = false)
+bool is_bit_set(T_v val, T_m msk, bool need_all_bits_set = false)
 {
     typename std::remove_volatile<
-        typename std::make_unsigned<T_V>::type>::type uval = val;
-    typename std::make_unsigned<T_M>::type umsk = msk;
+        typename std::make_unsigned<T_v>::type>::type uval = val;
+    typename std::make_unsigned<T_m>::type umsk = msk;
 
     return (need_all_bits_set) ? ((uval & umsk) == umsk) : (uval & umsk);
 }
 
 } // namespace hodea
 
-#endif /*!_HODEA_BIT_MANIP_HPP_ */
+#endif /*!_HODEA_BIT_mANIP_HPP_ */
