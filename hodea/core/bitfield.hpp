@@ -10,6 +10,8 @@
 #if !defined _HODEA_BITFIELD_HPP_
 #define _HODEA_BITFIELD_HPP_
 
+#include <hodea/core/cstdint.hpp>
+
 namespace hodea {
 
 /**
@@ -27,15 +29,10 @@ namespace hodea {
  * \returns
  *      Bit field according the given value and position
  */
-template <
-    typename T,
-    typename = typename std::enable_if<std::is_unsigned<T>::value>::type
-    >
-constexpr T val2fld(T value, int pos)
+static inline constexpr uint_fast32_t val2fld(uint_fast32_t value, int pos)
 {
     return value << pos;
 }
-
 
 /**
  * Construct a bit field from its value, its bit position and mask.
@@ -57,11 +54,9 @@ constexpr T val2fld(T value, int pos)
  * \note
  * We expect \a value and \a msk to be the same type.
  */
-template <
-    typename T,
-    typename = typename std::enable_if<std::is_unsigned<T>::value>::type
-    >
-constexpr T val2fld(T value, int pos, T msk)
+static inline constexpr uint_fast32_t val2fld(
+    uint_fast32_t value, int pos, uint_fast32_t msk
+    )
 {
     return (value << pos) & msk;
 }
@@ -87,15 +82,12 @@ constexpr T val2fld(T value, int pos, T msk)
  * \note
  * We expect \a field and \a msk to be the same type.
  */
-template <
-    typename T,
-    typename = typename std::enable_if<std::is_unsigned<T>::value>::type
-    >
-constexpr T fld2val(T field, int pos, T msk)
+static inline constexpr uint_fast32_t fld2val(
+    uint_fast32_t field, int pos, uint_fast32_t msk
+    )
 {
     return (field & msk) >> pos;
 }
-
 
 } // namespace hodea
 
