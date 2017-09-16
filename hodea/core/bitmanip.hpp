@@ -44,8 +44,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BIT_mANIP_HPP_
-#define _HODEA_BIT_mANIP_HPP_
+#if !defined _HODEA_BIT_MANIP_HPP_
+#define _HODEA_BIT_MANIP_HPP_
 
 #include <type_traits>
 
@@ -59,50 +59,29 @@ namespace hodea {
 typedef bool Bit_value;
 
 /**
- * Class to construct a bitmask.
- *
- * This class can be used to construct a bitmask.
- *
- * Example:
- * \code
- * unsigned msk = Bitmask<>{}.bit(0).bit(2); // gives 0x5
- * \endcode
+ * Helper template to check if type is an integral type.
  */
 template <
-    class T = unsigned,
-    class = typename std::enable_if<std::is_unsigned<T>::value>::type
+    typename T,
+    typename = typename std::enable_if<std::is_integral<T>::value>::type
     >
-class Bitmask{
-public:
-    constexpr Bitmask(T msk = 0) : msk{msk} {}
-
-    constexpr operator T() const {return msk;}
-    
-    constexpr Bitmask bit(int pos) const
-    {   
-        return Bitmask(msk | (Bitmask{1} << pos));
-    }   
-
-private:
-    T msk;
+struct enable_if_integral_type
+{
+    typedef T type;
 };
 
 /**
- * Convert bit position to a mask.
- *
- * \param[in] pos Position of a single bit.
- *
- * \returns
- *      Bitmask with the bit in the given position set.
+ * Helper template to check if type can represent a bitmask.
  */
 template <
-    typename T = unsigned,
-    typename = typename std::enable_if<std::is_integral<T>::value>::type
+    typename T,
+    typename = typename std::enable_if<
+        std::is_integral<T>::value || std::is_enum<T>::value>::type
     >
-constexpr T bit_to_msk(int pos)
+struct enable_if_bitmask_type
 {
-    return T{1} << pos;
-}
+    typedef T type;
+};
 
 /**
  * Clear a single bit or multiple bits.
@@ -118,8 +97,8 @@ constexpr T bit_to_msk(int pos)
 template <
     typename T_v, typename T_m,
     typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
+    typename = typename enable_if_integral_type<T_v>::type,
+    typename = typename enable_if_bitmask_type<T_m>::type
     >
 void clr_bit(T_v& var, T_m msk)
 {
@@ -140,9 +119,8 @@ void clr_bit(T_v& var, T_m msk)
  */
 template <
     typename T_v, typename T_m,
-    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
+    typename = typename enable_if_integral_type<T_v>::type,
+    typename = typename enable_if_bitmask_type<T_m>::type
     >
 void set_bit(T_v& var, T_m msk)
 {
@@ -166,9 +144,8 @@ void set_bit(T_v& var, T_m msk)
  */
 template <
     typename T_v, typename T_m,
-    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
+    typename = typename enable_if_integral_type<T_v>::type,
+    typename = typename enable_if_bitmask_type<T_m>::type
     >
 void set_bit_value(T_v& var, T_m msk, Bit_value val)
 {
@@ -209,11 +186,9 @@ void set_bit_value(T_v& var, T_m msk, Bit_value val)
  */
 template <
     typename T_v, typename T_cm, typename T_sm,
-    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_cm>::value || std::is_enum<T_cm>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_sm>::value || std::is_enum<T_sm>::value>::type
+    typename = typename enable_if_integral_type<T_v>::type,
+    typename = typename enable_if_bitmask_type<T_cm>::type,
+    typename = typename enable_if_bitmask_type<T_sm>::type
     >
 void modify_bits(
     T_v& var, T_cm clr_msk, T_sm set_msk
@@ -244,9 +219,8 @@ void modify_bits(
  */
 template <
     typename T_v, typename T_m,
-    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
+    typename = typename enable_if_integral_type<T_v>::type,
+    typename = typename enable_if_bitmask_type<T_m>::type
     >
 void toggle_bit(T_v& var, T_m msk)
 {
@@ -274,19 +248,20 @@ void toggle_bit(T_v& var, T_m msk)
  */
 template <
     typename T_v, typename T_m,
-    typename = typename std::enable_if<std::is_integral<T_v>::value>::type,
-    typename = typename std::enable_if<
-        std::is_integral<T_m>::value || std::is_enum<T_m>::value>::type
+    typename = typename enable_if_integral_type<T_v>::type,
+    typename = typename enable_if_bitmask_type<T_m>::type
     >
 bool is_bit_set(T_v val, T_m msk, bool need_all_bits_set = false)
 {
     typename std::remove_volatile<
         typename std::make_unsigned<T_v>::type>::type uval = val;
-    typename std::make_unsigned<T_m>::type umsk = msk;
+
+    using msk_unsigned_t = typename std::make_unsigned<T_m>::type;
+    msk_unsigned_t umsk = static_cast<msk_unsigned_t>(msk);
 
     return (need_all_bits_set) ? ((uval & umsk) == umsk) : (uval & umsk);
 }
 
 } // namespace hodea
 
-#endif /*!_HODEA_BIT_mANIP_HPP_ */
+#endif /*!_HODEA_BIT_MANIP_HPP_ */
