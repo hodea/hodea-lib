@@ -11,10 +11,37 @@
 #define _HODEA_BITFIELD_HPP_
 
 #include <hodea/core/cstdint.hpp>
-#include <hodea/core/bitmask.hpp>
 #include <hodea/core/type_constraints.hpp>
 
 namespace hodea {
+
+/**
+ * Construct a bitmask based on its position and its length.
+ */
+template <
+    typename T,
+    typename = typename enable_if_integral_type<T>::type
+    >
+constexpr T bitmask(int pos, int num_bits = 1)
+{
+    return
+        (static_cast<T>(1) << pos) |
+        ((num_bits > 1) ? bitmask<T>(pos + 1, num_bits - 1) : 0);
+}
+
+/**
+ * Class used to represent position and mask of a bit field.
+ */
+template <typename T>
+class Bitfield_descriptor {
+public:
+    constexpr Bitfield_descriptor(int pos, int num_bits) :
+        pos{pos}, msk{bitmask<T>(pos, num_bits)}
+    {}
+
+const int pos;
+const typename std::remove_volatile<T>::type msk;
+};
 
 /**
  * Construct a bit field from its value and position.
@@ -68,7 +95,31 @@ template <
     >
 constexpr T_val val2fld(T_val value, T_pos pos, T_msk msk)
 {
-    return (value << pos) & static_cast<T_val>(msk);
+    return (value << pos) & msk;
+}
+
+/**
+ * Construct a bit field based on field descriptor.
+ *
+ * This functions shifts a value to a desired position for assigning the
+ * result to a variable are peripheral register consisting of several bit
+ * fields.
+ *
+ * \param[in] val
+ *      The value for the bit field to construct.
+ * \param[in] bfd
+ *      Bit field descriptor class with position and mask of the field.
+ *
+ * \returns
+ *      Bit field according the given value and position
+ */
+template <
+    typename T,
+    typename = typename enable_if_unsigned_type<T>::type
+    >
+constexpr T val2fld(T value, const Bitfield_descriptor<T>& bfd)
+{
+    return val2fld<T>(value, bfd.pos, bfd.msk);
 }
 
 /**
@@ -102,6 +153,31 @@ constexpr T_val fld2val(T_val field, T_pos pos, T_msk msk)
 {
     return (field & static_cast<T_val>(msk)) >> pos;
 }
+
+/**
+ * Extract value from a bit field based bit field descriptor
+ *
+ * This functions masks and shifts a bit field for extracting its
+ * value from a variable are peripheral register consisting of
+ * several bit fields.
+ *
+ * \param[in] field
+ *      Variable or register content from which to extract the field.
+ * \param[in] bfd
+ *      Bit field descriptor class with position and mask of the field.
+ *
+ * \returns
+ *      The bit field value extracted from \a field
+ */
+template <
+    typename T,
+    typename = typename enable_if_unsigned_type<T>::type
+    >
+constexpr T fld2val(T field, const Bitfield_descriptor<T>& bfd)
+{
+    return fld2val<T>(field, bfd.pos, bfd.msk);
+}
+
 
 } // namespace hodea
 
