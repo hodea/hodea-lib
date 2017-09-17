@@ -7,78 +7,64 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BIT_mANIP_HPP_
-#define _HODEA_BIT_mANIP_HPP_
+#if !defined _HODEA_BITMASK_HPP_
+#define _HODEA_BITMASK_HPP_
 
 #include <type_traits>
 
 namespace hodea {
+namespace helper {
 
 /**
- * Class to construct a bitmask.
+ * Class to construct a right aligned bitmask at compile time.
  *
- * This class can be used to construct a bitmask.
+ * This is a helper class for \a bitmask(). It is used to construct
+ * a right aligned bitmask according the number of bits the bitmask covers
+ * at compile time by using template recursion.
  *
- * Example:
- * \code
- * unsigned msk = Bitmask<>{}.bit(0).bit(2); // gives 0x5
- * \endcode
+ * \note
+ * We use template recursion instead of a recursive constexpr function
+ * to enforce that the mask is created at compile time.
  */
-template <
-    class T = unsigned,
-    class = typename std::enable_if<std::is_unsigned<T>::value>::type
-    >
-class Bitmask{
+template <class T, int number_of_bits>
+class Right_aligned_mask {
 public:
-    constexpr Bitmask(T msk = 0) : msk{msk} {}
+    constexpr Right_aligned_mask() :
+        msk {(static_cast<T>(1) << (number_of_bits - 1)) |
+                Right_aligned_mask<T, number_of_bits - 1>{}}
+    {}
 
     constexpr operator T() const {return msk;}
-    
-    constexpr Bitmask bit(int pos) const
-    {   
-        return Bitmask(msk | (Bitmask{1} << pos));
-    }   
 
 private:
     T msk;
 };
 
 /**
- * Convert bit position to a mask.
- *
- * \param[in] pos Position of a single bit.
- *
- * \returns
- *      Bitmask with the bit in the given position set.
+ * Class Right_align_mask specialization to end recursion.
  */
-template <
-    typename T = unsigned,
-    typename = typename std::enable_if<std::is_integral<T>::value>::type
-    >
-constexpr T bit_to_msk(int pos)
-{
-    return T{1} << pos;
-}
+template <class T>
+struct Right_aligned_mask<T, 0> {
+public:
+    constexpr Right_aligned_mask() {}
+
+    constexpr operator T() const {return 0;}
+};
+
+} // namespace hodea::helper
 
 /**
- * Create a bitmask at compile time.
- * 
- * \note
- * The parameter are passed s template parameter to ensure that it is
- * resolved at compile time.
+ * Construct a bitmask based on its position and its length.
  */
 template <
-    typename T,
-    int pos,
-    int size = 1
+    typename T, int pos, int number_of_bits = 1,
+    typename = typename std::enable_if<std::is_unsigned<T>::value>::type
     >
-constexpr T make_bitmask()
+constexpr T bitmask()
 {
-    return 
-        (static_cast<T>(1) << (pos + size)) | 
-            (size > 1) ? make_bitmask<T, pos, size - 1>() : 0;
+    return helper::Right_aligned_mask<T, number_of_bits>{} << pos;
 }
 
 } // namespace hodea
 
-#endif /*!_HODEA_BIT_mANIP_HPP_ */
+#endif /*!_HODEA_BITMASK_HPP_ */

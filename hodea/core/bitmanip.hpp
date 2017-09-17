@@ -44,8 +44,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BIT_MANIP_HPP_
-#define _HODEA_BIT_MANIP_HPP_
+#if !defined _HODEA_BITMANIP_HPP_
+#define _HODEA_BITMANIP_HPP_
 
 #include <type_traits>
 
@@ -264,4 +264,4 @@ bool is_bit_set(T_v val, T_m msk, bool need_all_bits_set = false)
 
 } // namespace hodea
 
-#endif /*!_HODEA_BIT_MANIP_HPP_ */
+#endif /*!_HODEA_BITMANIP_HPP_ */
