@@ -12,19 +12,7 @@
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmask.hpp>
-
-/*
- * We assume that we compile for a 32 or 64 bit machine, i.e. the
- * size of the unsigned type is at least 32 bit.
- * If the code is compiled for a 16 bit machine we should consider
- * to provided overloaded versions of val2fld() and fld2val() for
- * the uint16_t type for efficiency reasons on this platform.
- */
-static_assert(
-    sizeof(unsigned) >= sizeof(uint32_t),
-    "unsigned type too narrow. Overload val2fld() and fld2val()"
-    "for uint16_t"
-    );
+#include <hodea/core/type_constraints.hpp>
 
 namespace hodea {
 
@@ -43,15 +31,11 @@ namespace hodea {
  * \returns
  *      Bit field according the given value and position
  */
-static inline constexpr uint32_t val2fld(uint32_t value, int pos)
-{
-    return value << pos;
-}
-
-/**
- * \copydoc val2fld(uint32_t,int)
- */
-static inline constexpr uint64_t val2fld(uint64_t value, int pos)
+template <
+    typename T,
+    typename = typename enable_if_unsigned_type<T>::type
+    >
+constexpr T val2fld(T value, int pos)
 {
     return value << pos;
 }
@@ -74,23 +58,17 @@ static inline constexpr uint64_t val2fld(uint64_t value, int pos)
  *      Bit field according the given value, position and mask.
  *
  * \note
- * We expect \a value and \a msk to be the same type.
+ * We expect \a value and the returned field to be of same type.
  */
-static inline constexpr uint32_t val2fld(
-    uint32_t value, int pos, uint32_t msk
-    )
+template <
+    typename T_val, typename T_pos, typename T_msk,
+    typename = typename enable_if_unsigned_type<T_val>::type,
+    typename = typename enable_if_integral_type<T_pos>::type,
+    typename = typename enable_if_bitmask_type<T_msk>::type
+    >
+constexpr T_val val2fld(T_val value, T_pos pos, T_msk msk)
 {
-    return (value << pos) & msk;
-}
-
-/**
- * \copydoc val2fld(uint32_t,int,uint32_t)
- */
-static inline constexpr uint64_t val2fld(
-    uint64_t value, int pos, uint64_t msk
-    )
-{
-    return (value << pos) & msk;
+    return (value << pos) & static_cast<T_val>(msk);
 }
 
 /**
@@ -112,23 +90,17 @@ static inline constexpr uint64_t val2fld(
  *      The bit field value extracted from \a field
  *
  * \note
- * We expect \a field and \a msk to be the same type.
+ * We expect \a field and the returned value to be of same type.
  */
-static inline constexpr unsigned fld2val(
-    uint32_t field, int pos, uint32_t msk
-    )
+template <
+    typename T_val, typename T_pos, typename T_msk,
+    typename = typename enable_if_unsigned_type<T_val>::type,
+    typename = typename enable_if_integral_type<T_pos>::type,
+    typename = typename enable_if_bitmask_type<T_msk>::type
+    >
+constexpr T_val fld2val(T_val field, T_pos pos, T_msk msk)
 {
-    return (field & msk) >> pos;
-}
-
-/**
- * \copydoc fld2val(uint32_t,int,uint32_t)
- */
-static inline constexpr unsigned fld2val(
-    uint64_t field, int pos, uint64_t msk
-    )
-{
-    return (field & msk) >> pos;
+    return (field & static_cast<T_val>(msk)) >> pos;
 }
 
 } // namespace hodea
