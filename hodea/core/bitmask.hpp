@@ -10,7 +10,7 @@
 #if !defined _HODEA_BITMASK_HPP_
 #define _HODEA_BITMASK_HPP_
 
-#include <type_traits>
+#include <hodea/core/type_constraints.hpp>
 
 namespace hodea {
 namespace helper {
@@ -58,7 +58,7 @@ public:
  */
 template <
     typename T, int pos, int number_of_bits = 1,
-    typename = typename std::enable_if<std::is_unsigned<T>::value>::type
+    typename = typename enable_if_integral_type<T>::type
     >
 constexpr T bitmask()
 {

@@ -48,6 +48,7 @@
 #define _HODEA_BITMANIP_HPP_
 
 #include <type_traits>
+#include <hodea/core/type_constraints.hpp>
 
 namespace hodea {
 
@@ -57,31 +58,6 @@ namespace hodea {
  * A bit can be '0' or '1'. This is best expressed by a boolean type.
  */
 typedef bool Bit_value;
-
-/**
- * Helper template to check if type is an integral type.
- */
-template <
-    typename T,
-    typename = typename std::enable_if<std::is_integral<T>::value>::type
-    >
-struct enable_if_integral_type
-{
-    typedef T type;
-};
-
-/**
- * Helper template to check if type can represent a bitmask.
- */
-template <
-    typename T,
-    typename = typename std::enable_if<
-        std::is_integral<T>::value || std::is_enum<T>::value>::type
-    >
-struct enable_if_bitmask_type
-{
-    typedef T type;
-};
 
 /**
  * Clear a single bit or multiple bits.
