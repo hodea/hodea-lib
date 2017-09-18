@@ -16,31 +16,20 @@
 namespace hodea {
 
 /**
- * Construct a bitmask based on its position and its length.
+ * Class used to represent position and mask of a bit field.
  */
 template <
     typename T,
-    typename = typename enable_if_integral_type<T>::type
+    typename = typename enable_if_unsigned_type<T>::type
     >
-constexpr T bitmask(int pos, int num_bits = 1)
-{
-    return
-        (static_cast<T>(1) << pos) |
-        ((num_bits > 1) ? bitmask<T>(pos + 1, num_bits - 1) : 0);
-}
-
-/**
- * Class used to represent position and mask of a bit field.
- */
-template <typename T>
 class Bitfield_descriptor {
 public:
-    constexpr Bitfield_descriptor(int pos, int num_bits) :
-        pos{pos}, msk{bitmask<T>(pos, num_bits)}
+    constexpr Bitfield_descriptor(int pos, T right_aligned_msk) :
+        pos{pos}, msk{right_aligned_msk << pos}
     {}
 
 const int pos;
-const typename std::remove_volatile<T>::type msk;
+const T msk;
 };
 
 /**

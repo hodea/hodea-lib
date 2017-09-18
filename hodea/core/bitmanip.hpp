@@ -60,6 +60,32 @@ namespace hodea {
 typedef bool Bit_value;
 
 /**
+ * Construct bitmask with a single bit set for a given bit position.
+ */
+template <
+    typename T = unsigned,
+    typename = typename enable_if_integral_type<T>::type
+    >
+constexpr T bit_to_msk(int pos)
+{
+    return (static_cast<T>(1) << pos);
+}
+
+/**
+ * Construct a bitmask based on its position and its length.
+ */
+template <
+    typename T,
+    typename = typename enable_if_integral_type<T>::type
+    >
+constexpr T bitmask(int pos, int num_bits = 1)
+{
+    return
+        (static_cast<T>(1) << pos) |
+        ((num_bits > 1) ? bitmask<T>(pos + 1, num_bits - 1) : 0);
+}
+
+/**
  * Clear a single bit or multiple bits.
  *
  * \param[in,out] var
