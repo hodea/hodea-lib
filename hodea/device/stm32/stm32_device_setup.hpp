@@ -3,12 +3,12 @@
 // See LICENSE file for full details.
 
 /**
- * Basic infrastructure setup for STM32 devices.
+ * Sets up basic infrastructure for STM32 devices.
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_STM32_SETUP_HPP_
-#define _HODEA_STM32_SETUP_HPP_
+#if !defined _HODEA_STM32_DEVICE_SETUP_HPP_
+#define _HODEA_STM32_DEVICE_SETUP_HPP_
 
 #include <hodea/device/hal/hal_device_properties.hpp>
 
@@ -20,4 +20,4 @@
 #error "Unsupported STM32 device."
 #endif
 
-#endif /*!_HODEA_STM32_SETUP_HPP_ */
+#endif /*!_HODEA_STM32_DEVICE_SETUP_HPP_ */
