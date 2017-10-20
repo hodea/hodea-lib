@@ -13,31 +13,28 @@
 #include <type_traits>
 
 /**
- * Provide or operator in order to use scoped enums for bitmasks.
- */
-#define DEFINE_SCOPED_ENUM_OR_OPERATOR(Enum) \
-typedef std::underlying_type<Enum>::type Enum##_underlying_type;    \
-                                                                    \
-static inline constexpr Enum##_underlying_type operator |(          \
-    Enum lhs, Enum rhs                                              \
-    )                                                               \
-{                                                                   \
-    return                                                          \
-        static_cast<Enum##_underlying_type>(lhs) |                  \
-        static_cast<Enum##_underlying_type>(rhs);                   \
-}
-
-/**
- * Cast scoped enum to its underlying type.
+ * Cast enum to its underlying type.
  */
 template <
     typename T,
     typename = typename std::enable_if<std::is_enum<T>::value>::type,
     typename T_underlying = typename std::underlying_type<T>::type 
     >
-constexpr T_underlying to_underlying(T e) noexcept
+constexpr T_underlying enum_to_underlying(T e) noexcept
 {
     return static_cast<T_underlying>(e);
 }
+
+/**
+ * Provide or operator in order to use scoped enums for bitmasks.
+ */
+#define DEFINE_SCOPED_ENUM_OR_OPERATOR(Enum) \
+static inline constexpr Enum operator |(Enum lhs, Enum rhs)             \
+{                                                                       \
+    return static_cast<Enum>(                                           \
+                enum_to_underlying(lhs) | enum_to_underlying(rhs)       \
+                );                                                      \
+}
+
 
 #endif /*!_HODEA_SCOPED_ENUM_OR_OPERATOR_HPP_ */
