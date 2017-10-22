@@ -244,8 +244,7 @@ private:
 enum struct Gpio_pin_pupd {
     none = 0,
     pull_up = 1,
-    pull_down = 2,
-    reserved = 3
+    pull_down = 2
 };
 
 /**
