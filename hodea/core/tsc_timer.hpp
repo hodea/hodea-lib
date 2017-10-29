@@ -173,13 +173,12 @@ public:
      * \param[in] period
      *      The number of ticks to delay the execution.
      */
-     static void delay(Ticks period)
-     {
-        Ticks start = T_time_base::timestamp();
+    static void delay(Ticks period)
+    {
+       Ticks start = T_time_base::timestamp();
 
         while (!is_elapsed(start, period)) ;
      }
-
 };
 
 
