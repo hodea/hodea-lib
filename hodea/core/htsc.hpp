@@ -22,10 +22,7 @@
 
 namespace hodea {
 
-using Htsc_timer = Tsc_timer<Htsc_time_base>;
-using Htsc_ticks = Htsc_timer::Ticks;
-
-constexpr Htsc_timer htsc;
+using htsc = Tsc_timer<Htsc_time_base>;
 
 } // namespace hodea
 

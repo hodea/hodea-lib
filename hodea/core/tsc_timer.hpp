@@ -88,6 +88,46 @@ public:
         Ticks now = T_time_base::timestamp();
         return elapsed(ts_start, now) >= period;
     }
+
+    /**
+     * Test period and update start timestamp to provide repetitive timer.
+     *
+     * This method tests if a given period is elapsed, and moves the
+     * start timestamp to the actual time in this case to provide a
+     * repetitive timer.
+     *
+     * \param[in,out] ts_start
+     *      Timestamp of the starting time.
+     * \param[in] period
+     *      Time period to test whether it is elapsed or not.
+     *
+     * \returns
+     *      True if the given period is elapsed, false otherwise.
+     */
+    static bool is_elapsed_repetitive(Ticks& ts_start, Ticks period)
+    {
+        Ticks now = T_time_base::timestamp();
+
+        if (elapsed(ts_start, now) >= period) {
+            ts_start = now;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Delay execution for a certain number of ticks.
+     *
+     * \param[in] period
+     *      The number of ticks to delay the execution.
+     */
+     static void delay(Ticks period)
+     {
+        Ticks start = T_time_base::timestamp();
+
+        while (!is_elapsed(start, period)) ;
+     }
+
 };
 
 
