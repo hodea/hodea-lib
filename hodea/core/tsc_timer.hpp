@@ -49,6 +49,9 @@
 #if !defined _HODEA_TSC_TIMER_HPP_
 #define _HODEA_TSC_TIMER_HPP_
 
+#include <hodea/core/cstdint.hpp>
+#include <hodea/core/math.hpp>
+
 namespace hodea {
 
 /**
@@ -58,6 +61,55 @@ template <class T_time_base>
 class Tsc_timer : public T_time_base {
 public:
     using Ticks = typename T_time_base::Ticks;
+
+    /**
+     * Convert seconds into ticks at compile time.
+     *
+     * This method converts seconds into ticks. Its intended use is at
+     * compile time. If you need to perform the calculation at runtime
+     * consider to use \a i_us_to_ticks() instead.
+     */
+    static constexpr Ticks sec_to_ticks(double sec)
+    {
+        return math_round_to<Ticks>(T_time_base::counter_clk_hz * sec);
+    }
+
+    /**
+     * Convert milliseconds into ticks at compile time.
+     *
+     * This method converts milliseconds into ticks. Its intended use is
+     * at compile time. If you need to perform the calculation at runtime
+     * consider to use \a i_us_to_ticks() instead.
+     */
+    static constexpr Ticks ms_to_ticks(double ms)
+    {
+        return sec_to_ticks(ms * 1e-3);
+    }
+
+    /**
+     * Convert microseconds into ticks at compile time.
+     *
+     * This method converts microseconds into ticks. Its intended use is
+     * at compile time. If you need to perform the calculation at runtime
+     * consider to use \a i_us_to_ticks() instead.
+     */
+    static constexpr Ticks us_to_ticks(double us)
+    {
+        return sec_to_ticks(us * 1e-6);
+    }
+
+    /**
+     * Convert microseconds into ticks using integer arithmetic.
+     *
+     * This method converts microseconds into ticks with rounding.
+     * It can be used at runtime as it avoids floating point operations.
+     */
+    static constexpr Ticks i_us_to_ticks(int us)
+    {
+        // we use 64 bit arithmetic to avoid overflows
+        return (static_cast<int64_t>(us) * T_time_base::counter_clk_hz
+                + 500000) / 1000000;
+    }
 
     /**
      * Give the time elapsed between to timestamps.
