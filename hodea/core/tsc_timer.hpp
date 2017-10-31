@@ -63,9 +63,9 @@ public:
     using Ticks = typename T_time_base::Ticks;
 
     /**
-     * Convert seconds into ticks at compile time.
+     * Convert seconds into ticks at compile time [compile time].
      *
-     * This method converts seconds into ticks. Its intended use is at
+     * This method converts seconds into ticks. Its preferred use is at
      * compile time. If you need to perform the calculation at runtime
      * consider to use \a i_us_to_ticks() instead.
      */
@@ -75,9 +75,9 @@ public:
     }
 
     /**
-     * Convert milliseconds into ticks at compile time.
+     * Convert milliseconds into ticks at compile time [compile time].
      *
-     * This method converts milliseconds into ticks. Its intended use is
+     * This method converts milliseconds into ticks. Its preferred use is
      * at compile time. If you need to perform the calculation at runtime
      * consider to use \a i_us_to_ticks() instead.
      */
@@ -87,9 +87,9 @@ public:
     }
 
     /**
-     * Convert microseconds into ticks at compile time.
+     * Convert microseconds into ticks at compile time [compile time].
      *
-     * This method converts microseconds into ticks. Its intended use is
+     * This method converts microseconds into ticks. Its preferred use is
      * at compile time. If you need to perform the calculation at runtime
      * consider to use \a i_us_to_ticks() instead.
      */
@@ -99,16 +99,18 @@ public:
     }
 
     /**
-     * Convert microseconds into ticks using integer arithmetic.
+     * Convert microseconds into ticks using integer arithmetic [runtime].
      *
-     * This method converts microseconds into ticks with rounding.
-     * It can be used at runtime as it avoids floating point operations.
+     * This method converts microseconds into ticks using integer
+     * arithmetic. Its preferred use is at runtime, but can also be
+     * used at compile time.
+     * In contrast to the implementations using floating point operations,
+     * this method does not apply rounding.
      */
-    static constexpr Ticks i_us_to_ticks(int us)
+    static constexpr Ticks i_us_to_ticks(unsigned us)
     {
-        // we use 64 bit arithmetic to avoid overflows
-        return (static_cast<int64_t>(us) * T_time_base::counter_clk_hz
-                + 500000) / 1000000;
+        return (static_cast<uint64_t>(us) * T_time_base::counter_clk_hz)
+                    / 1000000;
     }
 
     /**
