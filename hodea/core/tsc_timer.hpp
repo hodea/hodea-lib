@@ -30,7 +30,7 @@
  * - counter_clk_hz
  * - init()
  * - deinit()
- * - timestamp()
+ * - now()
  *
  * Ticks is the data type used to represent the counter value. On a
  * 32 bit system it is usually a 32 bit unsigned integer. The bitmask
@@ -38,7 +38,8 @@
  * the Ticks type may be required to hold the  counter value.
  * counter_clk_hz gives the frequency the timestamp counter is clocked
  * with. init() initialize the timestamp counter and deinit() stops it.
- * The method timestamp() returns the actual timer counter value.
+ * The method now() returns the timestamp of the actual time, with is the
+ * current timer counter value.
  *
  * The member variable counter_msk and counter_clk_hz should be constexpr
  * to allow calculation it compile time. init(), deinit() and timestamp()
@@ -139,8 +140,7 @@ public:
      */
     static bool is_elapsed(Ticks ts_start, Ticks period)
     {
-        Ticks now = T_time_base::timestamp();
-        return elapsed(ts_start, now) >= period;
+        return elapsed(ts_start, T_time_base::now()) >= period;
     }
 
     /**
@@ -160,10 +160,10 @@ public:
      */
     static bool is_elapsed_repetitive(Ticks& ts_start, Ticks period)
     {
-        Ticks now = T_time_base::timestamp();
+        Ticks ts_now = T_time_base::now();
 
-        if (elapsed(ts_start, now) >= period) {
-            ts_start = now;
+        if (elapsed(ts_start, ts_now) >= period) {
+            ts_start = ts_now;
             return true;
         }
         return false;
@@ -177,7 +177,7 @@ public:
      */
     static void delay(Ticks period)
     {
-       Ticks start = T_time_base::timestamp();
+       Ticks start = T_time_base::now();
 
         while (!is_elapsed(start, period)) ;
      }

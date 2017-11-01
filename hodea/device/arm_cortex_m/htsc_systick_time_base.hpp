@@ -42,15 +42,15 @@ public:
         SysTick->CTRL = 0;
     }
 
-    static Ticks timestamp()
+    static Ticks now()
     {
-        Ticks now = SysTick->VAL;
+        Ticks ts_now = SysTick->VAL;
 
         /*
          * The systick timer is a down counter, but we have to return
          * an up-counting timestamp.
          */
-        return counter_msk - now;
+        return counter_msk - ts_now;
     }
 };
 
