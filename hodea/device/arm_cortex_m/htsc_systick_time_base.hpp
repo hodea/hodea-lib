@@ -7,11 +7,11 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HTSC_SYSTICK_TIME_BASE_HPP_
-#define _HTSC_SYSTICK_TIME_BASE_HPP_
+#if !defined _HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_
+#define _HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_
 
 #include <hodea/core/cstdint.hpp>
-#include <hodea/device/hal/hal_device_setup.hpp>
+#include <hodea/device/hal/device_setup.hpp>
 
 namespace hodea {
 
@@ -57,4 +57,4 @@ public:
 
 } // namespace hodea
 
-#endif /*!_HTSC_SYSTICK_TIME_BASE_HPP_ */
+#endif /*!_HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_ */

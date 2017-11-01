@@ -10,7 +10,7 @@
 #if !defined _HODEA_IMX_M4_DEVICE_SETUP_HPP_
 #define _HODEA_IMX_M4_DEVICE_SETUP_HPP_
 
-#include <hodea/device/hal/hal_device_properties.hpp>
+#include <hodea/device/hal/device_properties.hpp>
 
 #if defined HODEA_DERIVED_CONFIG_BRAND_IMX_M4
 #include <device_imx.h>

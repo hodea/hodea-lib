@@ -9,7 +9,7 @@
  */
 
 #include <hodea/rte/htsc.hpp>
-#include <hodea/rte/rte_setup.hpp>
+#include <hodea/rte/setup.hpp>
 
 namespace hodea {
 

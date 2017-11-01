@@ -10,10 +10,10 @@
 #if !defined _HODEA_HAL_PIN_CONFIG_HPP_
 #define _HODEA_HAL_PIN_CONFIG_HPP_
 
-#include <hodea/device/hal/hal_device_properties.hpp>
+#include <hodea/device/hal/device_properties.hpp>
 
 #if defined HODEA_DERIVED_CONFIG_BRAND_STM32
-#include <hodea/device/stm32/stm32_pin_config.hpp>
+#include <hodea/device/stm32/pin_config.hpp>
 #else
 #error "Unsupported device."
 #endif

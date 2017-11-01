@@ -10,12 +10,12 @@
 #if !defined _HODEA_HAL_DEVICE_SETUP_HPP_
 #define _HODEA_HAL_DEVICE_SETUP_HPP_
 
-#include <hodea/device/hal/hal_device_properties.hpp>
+#include <hodea/device/hal/device_properties.hpp>
 
 #if defined HODEA_DERIVED_CONFIG_BRAND_STM32
-#include <hodea/device/stm32/stm32_device_setup.hpp>
+#include <hodea/device/stm32/device_setup.hpp>
 #elif defined HODEA_DERIVED_CONFIG_BRAND_IMX_M4
-#include <hodea/device/imx_m4/imx_m4_device_setup.hpp>
+#include <hodea/device/imx_m4/device_setup.hpp>
 #else
 #error "Unsupported device."
 #endif
