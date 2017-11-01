@@ -217,3 +217,10 @@ Bjarne Stroustrup:
 - Don't use unsigned unless you are fiddling with bit patterns.
 - Never mix signed and unsigned.
 
+## File names
+
+We use boost as the Boost C++ libraries as role model. We don't encode
+the target device name or other platform specific properties in the file
+name to make it unique. Instead we separate files with similar purpose
+but for different targets via directories. File are distinguisable via
+the directory structure.
