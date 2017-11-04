@@ -10,7 +10,6 @@
 #if !defined _HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_
 #define _HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_
 
-#include <hodea/core/cstdint.hpp>
 #include <hodea/device/hal/device_setup.hpp>
 
 namespace hodea {

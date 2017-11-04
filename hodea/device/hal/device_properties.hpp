@@ -47,4 +47,11 @@
 #error "Unsupported device."
 #endif
 
+#if defined HODEA_DERIVED_CONFIG_CORE_ARM_CORTEX_M0 || \
+    defined HODEA_DERIVED_CONFIG_CORE_ARM_CORTEX_M4
+
+#define HODEA_DERIVED_CONFIG_CORE_ARM_CORTEX_M
+
+#endif
+
 #endif /*!_HODEA_HAL_DEVICE_PROPERTIES_HPP_ */
