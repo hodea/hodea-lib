@@ -30,11 +30,58 @@ namespace hodea {
 typedef bool Digio_pin_value;
 
 /**
+ * Class to name a digital I/O pin.
+ *
+ * This class is used to name a digital I/O pin. E.g. the following line
+ * defines a constant which can be used to refer to the debug pin:
+ *
+ * \code static const Digio_pin(GPIOA_BASE, 5) debug_pin; \endcode
+ *
+ * Please note that we pass the base address of the port as uintptr_t to
+ * the constructor, instead of using the peripheral pointer. This allows
+ * the compiler to treat the parameter as constant and perform adequate
+ * optimizations. Tests with gcc showed that the compiler does not need to
+ * instantiate debug_pin in this case. It can inline the code. The
+ * resulting code is equivalent in terms of code size and runtime to the C
+ * macros and inline functions we used in the past.
+ *
+ * The compiler cannot achieve this if we pass the gpio port via its
+ * peripheral pointer. A class which supports the definition below would
+ * cause footprint and performance penalties.
+ *
+ * \code static const Digio_pin(GPIOA, 5) debug_pin; // penalties!!
+ * \endcode
+ *
+ * Fortunately, the CMSIS standard requires the chip vendors to define
+ * both. The address constant and the peripheral pointer.  \see
+ * http://arm-software.github.io/CMSIS_5/Core/html/device_h_pg.html
+ */
+class Digio_pin {
+public:
+    constexpr Digio_pin(uintptr_t port_base, int pin)
+        : port_base(port_base), _pin(pin)
+    { }
+
+    constexpr int pin() const {return _pin;}
+
+    constexpr uint32_t mask() const {return 1U << _pin;}
+
+    GPIO_TypeDef* const port() const
+    {
+        return reinterpret_cast<GPIO_TypeDef*>(port_base);
+    }
+
+private:
+    const uintptr_t port_base;
+    const int _pin;
+};
+/**
  * Class to control a digital output.
  */
-class Digio_output {
+class Digio_output : public Digio_pin {
 public:
-    Digio_output(GPIO_TypeDef* gpio, int pin) : gpio(gpio), pin(pin) {}
+    constexpr Digio_output(uintptr_t port, int pin)
+        : Digio_pin(port, pin) {}
 
     /**
      * Get desired output value.
@@ -59,7 +106,7 @@ public:
      */
     Digio_pin_value value() const
     {
-        return (gpio->ODR >> pin) & 1;
+        return (port()->ODR >> pin()) & 1;
     }
 
     /**
@@ -85,7 +132,7 @@ public:
      */
     Digio_pin_value real_pin_value() const
     {
-        return (gpio->IDR >> pin) & 1;
+        return (port()->IDR >> pin()) & 1;
     }
 
     /**
@@ -97,60 +144,42 @@ public:
      */
     void value(Digio_pin_value val) const
     {
-        if (val)
-            gpio->BSRR = 1U << pin;
-        else
-            gpio->BRR = 1U << pin;
+        val ? set() : reset();
     }
 
     /**
      * Set output to low.
      */
-    void reset() const { value(0); }
+    void reset() const
+    {
+        port()->BRR = mask();
+    }
 
     /**
      * Set output to high.
      */
-    void set() const { value(1); }
+    void set() const
+    {
+        port()->BSRR = mask();
+    }
 
     /**
      * Toggle digital output pin.
      */
     void toggle() const
     {
-        value() ? reset() : set();
+        value(!value());
     }
-
-    /**
-     * Set output value for several outputs of a port simultaneously.
-     *
-     * \param[in] gpio
-     *      The gpio port with the outputs to modify.
-     * \param[in] reset_msk
-     *      Bitmask selecting the outputs to reset.
-     * \param[in] set_msk
-     *      Bitmask selecting the outputs to set.
-     *
-     * Pins not selected with \a reset_msk or \a set_msk are not changed.
-     */
-    static void modify(
-        GPIO_TypeDef* gpio, unsigned reset_msk, unsigned set_msk
-        )
-    {
-        gpio->BSRR = (reset_msk << 16) | set_msk;
-    }
-
-private:
-    GPIO_TypeDef* const gpio; 
-    const int pin;
 };
+
 
 /**
  * Class to control a digital input.
  */
-class Digio_input {
+class Digio_input : public Digio_pin {
 public:
-    Digio_input(GPIO_TypeDef* gpio, int pin) : gpio(gpio), pin(pin) {}
+    constexpr Digio_input(uintptr_t port, int pin)
+        : Digio_pin(port, pin) {}
 
     /**
      * Get value of input pin.
@@ -162,13 +191,28 @@ public:
      */
     Digio_pin_value value() const
     {
-        return (gpio->IDR >> pin) & 1;
+        return (port()->IDR >> pin()) & 1;
     }
-
-private:
-    GPIO_TypeDef* const gpio; 
-    const int pin;
 };
+
+/**
+ * Set output value for several outputs of a port simultaneously.
+ *
+ * \param[in] port
+ *      The gpio port with the outputs to modify.
+ * \param[in] reset_msk
+ *      Bitmask selecting the outputs to reset.
+ * \param[in] set_msk
+ *      Bitmask selecting the outputs to set.
+ *
+ * Pins not selected with \a reset_msk or \a set_msk are not changed.
+ */
+static inline void digio_modify_outputs(
+    GPIO_TypeDef* port, unsigned reset_msk, unsigned set_msk
+    )
+{
+    port->BSRR = (reset_msk << 16) | set_msk;
+}
 
 } // namespace hodea
 
