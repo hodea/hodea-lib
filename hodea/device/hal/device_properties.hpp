@@ -10,8 +10,6 @@
 #if !defined _HODEA_HAL_DEVICE_PROPERTIES_HPP_
 #define _HODEA_HAL_DEVICE_PROPERTIES_HPP_
 
-#include <hodea_user_config.hpp>
-
 #if defined(STM32F030x6) || defined(STM32F030x8) || \
     defined(STM32F031x6) || defined(STM32F038xx) || \
     defined(STM32F042x6) || defined(STM32F048xx) || \

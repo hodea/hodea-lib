@@ -11,6 +11,7 @@
 #define _HODEA_STM32_DEVICE_SETUP_HPP_
 
 #include <hodea/device/hal/device_properties.hpp>
+#include "hodea_user_config.hpp"
 
 #if defined HODEA_DERIVED_CONFIG_SERIES_STM32F0
 #include <stm32f0xx.h>
