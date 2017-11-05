@@ -30,35 +30,32 @@ namespace hodea {
  */
 typedef bool Digio_pin_value;
 
-/**
+ /**
  * Class to name a digital I/O pin.
  *
  * This class is used to name a digital I/O pin. E.g. the following line
  * defines a constant which can be used to refer to the debug pin:
  *
- * \code
- * static const Digio_pin(GPIO2_BASE, 12) debug_pin;
- * \endcode
+ * \code static const Digio_pin(GPIO2_BASE, 12) debug_pin; \endcode
  *
  * Please note that we pass the base address of the port as uintptr_t to
  * the constructor, instead of using the peripheral pointer. This allows
  * the compiler to treat the parameter as constant and perform adequate
  * optimizations. Tests with gcc showed that the compiler does not need to
- * instantiate debug_pin. It can inline the code. The resulting code is
- * equivalent in terms of code size and runtime to the C macros and inline
- * functions we used in the past.
+ * instantiate debug_pin in this case. It can inline the code. The
+ * resulting code is equivalent in terms of code size and runtime to the C
+ * macros and inline functions we used in the past.
  *
  * The compiler cannot achieve this if we pass the gpio port via its
- * peripheral pointer. A class with allows the code below causes
- * footprint and performance penalties.
+ * peripheral pointer. A class which supports the definition below would
+ * cause footprint and performance penalties.
  *
- * \code
- * static const Digio_pin(GPIO2, 12) debug_pin; // penalties!!
+ * \code static const Digio_pin(GPIO2, 12) debug_pin; // penalties!!
  * \endcode
  *
  * Fortunately, the CMSIS standard requires the chip vendors to define
- * both. The address constant and the peripheral pointer.
- * \see http://arm-software.github.io/CMSIS_5/Core/html/device_h_pg.html
+ * both. The address constant and the peripheral pointer.  \see
+ * http://arm-software.github.io/CMSIS_5/Core/html/device_h_pg.html
  */
 class Digio_pin {
 public:
