@@ -45,7 +45,7 @@ class Critical_section {
 public:
     void lock()
     {
-        primask = __get_PRIMASK();
+       primask = __get_PRIMASK();
         __disable_irq();
         std::atomic_signal_fence(std::memory_order_seq_cst);
     }

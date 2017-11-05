@@ -14,6 +14,8 @@
 
 #if defined HODEA_DERIVED_CONFIG_BRAND_STM32
 #include <hodea/device/stm32/digio.hpp>
+#elif defined HODEA_DERIVED_CONFIG_BRAND_IMX_M4
+#include <hodea/device/imx_m4/digio.hpp>
 #else
 #error "Unsupported device."
 #endif
