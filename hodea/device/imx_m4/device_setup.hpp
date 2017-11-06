@@ -18,4 +18,6 @@
 #error "Unsupported IMX device."
 #endif
 
+#include <hodea/device/hal/device_access.hpp>
+
 #endif /*!_HODEA_IMX_M4_DEVICE_SETUP_HPP_ */

@@ -130,7 +130,7 @@ public:
      * \retval 0 output pin is low
      * \retval 1 output pin is high
      */
-    Digio_pin_value real_pin_value() const
+    void real_pin_value() const
     {
         return (port()->IDR >> pin()) & 1;
     }

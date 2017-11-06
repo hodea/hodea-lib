@@ -21,4 +21,6 @@
 #error "Unsupported STM32 device."
 #endif
 
+#include <hodea/device/hal/device_access.hpp>
+
 #endif /*!_HODEA_STM32_DEVICE_SETUP_HPP_ */
