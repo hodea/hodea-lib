@@ -12,8 +12,10 @@
 
 #include <hodea/device/hal/device_properties.hpp>
 
-#if defined HODEA_DERIVED_CONFIG_CORE_ARM_CORTEX_M
-#include <hodea/device/arm_cortex_m/device_access.hpp>
+#if defined HODEA_DERIVED_CONFIG_BRAND_STM32
+#include <hodea/device/stm32/device_access.hpp>
+#elif defined HODEA_DERIVED_CONFIG_BRAND_IMX_M4
+#include <hodea/device/imx_m4/device_access.hpp>
 #else
 #error "Unsupported device."
 #endif
