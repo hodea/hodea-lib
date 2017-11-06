@@ -29,52 +29,21 @@ namespace hodea {
  */
 typedef bool Digio_pin_value;
 
-/**
+
+ /**
  * Class to name a digital I/O pin.
- *
- * This class is used to name a digital I/O pin. E.g. the following line
- * defines a constant which can be used to refer to the debug pin:
- *
- * \code static const Digio_pin(GPIOA_BASE, 5) debug_pin; \endcode
- *
- * Please note that we pass the base address of the port as uintptr_t to
- * the constructor, instead of using the peripheral pointer. This allows
- * the compiler to treat the parameter as constant and perform adequate
- * optimizations. Tests with gcc showed that the compiler does not need to
- * instantiate debug_pin in this case. It can inline the code. The
- * resulting code is equivalent in terms of code size and runtime to the C
- * macros and inline functions we used in the past.
- *
- * The compiler cannot achieve this if we pass the gpio port via its
- * peripheral pointer. A class which supports the definition below would
- * cause footprint and performance penalties.
- *
- * \code static const Digio_pin(GPIOA, 5) debug_pin; // penalties!!
- * \endcode
- *
- * Fortunately, the CMSIS standard requires the chip vendors to define
- * both. The address constant and the peripheral pointer.  \see
- * http://arm-software.github.io/CMSIS_5/Core/html/device_h_pg.html
  */
 class Digio_pin {
 public:
     constexpr Digio_pin(uintptr_t port_base, int pin)
-        : port_base(port_base), _pin(pin)
-    { }
+        : device{port_base}, pin{pin}, msk{1U << pin}
+    {}
 
-    constexpr int pin() const {return _pin;}
-
-    constexpr uint32_t mask() const {return 1U << _pin;}
-
-    GPIO_TypeDef* const port() const
-    {
-        return reinterpret_cast<GPIO_TypeDef*>(port_base);
-    }
-
-private:
-    const uintptr_t port_base;
-    const int _pin;
+    const Device_pointer<GPIO_TypeDef> device;
+    const int pin;
+    const uint32_t msk;
 };
+
 /**
  * Class to control a digital output.
  */
@@ -106,7 +75,7 @@ public:
      */
     Digio_pin_value value() const
     {
-        return (port()->ODR >> pin()) & 1;
+        return (device->ODR >> pin) & 1;
     }
 
     /**
@@ -130,9 +99,9 @@ public:
      * \retval 0 output pin is low
      * \retval 1 output pin is high
      */
-    void real_pin_value() const
+    Digio_pin_value real_pin_value() const
     {
-        return (port()->IDR >> pin()) & 1;
+        return (device->IDR >> pin) & 1;
     }
 
     /**
@@ -152,7 +121,7 @@ public:
      */
     void reset() const
     {
-        port()->BRR = mask();
+        device->BRR = msk;
     }
 
     /**
@@ -160,7 +129,7 @@ public:
      */
     void set() const
     {
-        port()->BSRR = mask();
+        device->BSRR = msk;
     }
 
     /**
@@ -191,7 +160,7 @@ public:
      */
     Digio_pin_value value() const
     {
-        return (port()->IDR >> pin()) & 1;
+        return (device->IDR >> pin) & 1;
     }
 };
 
