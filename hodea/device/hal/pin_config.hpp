@@ -14,8 +14,8 @@
 
 #if defined HODEA_DERIVED_CONFIG_BRAND_STM32
 #include <hodea/device/stm32/pin_config.hpp>
-#elif defined HODEA_DERIVED_CONFIG_BRAND_IMX_M4
-#include <hodea/device/imx_m4/pin_config.hpp>
+#elif defined HODEA_DERIVED_CONFIG_SERIES_IMX7_M4
+#include <hodea/device/imx7_m4/pin_config.hpp>
 #else
 #error "Unsupported device."
 #endif
