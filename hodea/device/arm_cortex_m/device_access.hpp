@@ -8,7 +8,7 @@
  * \author f.hollerer@gmx.net
  */
 #if !defined _HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP_
-#define _HODEA_ARM_CORTEX_CM__DEVICE_ACCESS_HPP_
+#define _HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP_
 
 #include <hodea/core/cstdint.hpp>
 
