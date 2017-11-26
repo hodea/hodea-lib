@@ -82,6 +82,7 @@ parse_cmd_line()
 parse_cmd_line $*
 
 JLinkExe -device $device -if JTAG -speed 4000 -autoconnect -1 -jtagconf -1,-1  <<_InputFromHere_
+r
 loadfile $firmware_image
 r
 exit
