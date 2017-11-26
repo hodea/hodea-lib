@@ -1,0 +1,79 @@
+#!/bin/sh
+# This script to erase the flash using Segger JLINK.
+
+PROGRAM_NAME=`basename $0`
+
+device="stm32f091rc"
+firmware_image=""
+
+# -------------------------------------------------------------------------
+
+# Print usage message.
+usage()
+{
+    echo "Erase STM32 flash memory"
+    echo "usage: $PROGRAM_NAME [options]"
+    echo "Options:"
+    echo "  -h, --help\t\tDisplay this usage message"
+    echo "  -d, --device <core>\ttarget device"
+    echo "\t\t\tExample: stm32f091rc (default), stm32f334r8"
+}
+
+# -------------------------------------------------------------------------
+
+# Parse options and arguments passed via command line.
+parse_cmd_line()
+{
+    local cmd_line="$*"
+
+    # Transform long options to short ones.
+    for arg in "$@"; do
+        shift
+        case "$arg" in
+            "--help")   set -- "$@" "-h" ;;
+            "--device") set -- "$@" "-d" ;;
+            *)          set -- "$@" "$arg"
+        esac
+    done
+
+    # Process options.
+    while getopts "d:h" opt; do
+        case $opt in
+            d) case $OPTARG in
+                    stm32f*)
+                        device=$OPTARG
+                        ;;
+                    *)
+                        echo "unknown device"
+                        usage $cmd_line; exit 1
+                        ;;
+                esac
+                ;;
+            h)
+                usage $cmd_line
+                exit 0
+                ;;
+            \?)
+                usage $cmd_line
+                exit 1
+                ;;
+        esac
+    done
+
+    shift $((OPTIND - 1))
+
+    if [ "$#" -ne "0" ]; then
+        echo "too many arguments"
+        usage $cmd_line
+        exit 1
+    fi
+}
+
+# -------------------------------------------------------------------------
+
+parse_cmd_line $*
+
+JLinkExe -device $device -if JTAG -speed 4000 -autoconnect -1 -jtagconf -1,-1  <<_InputFromHere_
+erase
+exit
+_InputFromHere_
