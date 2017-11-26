@@ -14,20 +14,20 @@
  * On reset all pins except PA13/SYS_SWDIO and PA14/SYS_SWCLK are
  * configured as digital input.  PA13 and PA14 are in AF0 mode.
  *
- * GPIOx_MODER
+ * - GPIOx_MODER
  *      all pins are digital input, except PA13 and PA14
- * GPIOx_OTYPER
+ * - GPIOx_OTYPER
  *      all outputs are in push-pull output mode
- * GPIOx_OSPEEDR
+ * - GPIOx_OSPEEDR
  *      all pins set to low speed, except PA14/SYS_SWCLK for which
  *      high speed is enabled
  *      low speed: up to 2 MHz
- * GPIOx_PUBDR
+ * - GPIOx_PUBDR
  *      no pull-up / pull-down, except PA13 and PA14 where pull-up is
  *      enabled
- * GPIOx_ODR
+ * - GPIOx_ODR
  *      all bits cleared
- * GPIOx_AFRL, GPIOx_AFRH
+ * - GPIOx_AFRL, GPIOx_AFRH
  *      all pins set to AF0 (active if alternate function mode selected)
  *
  * \author f.hollerer@gmx.net
