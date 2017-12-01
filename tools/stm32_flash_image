@@ -4,6 +4,7 @@
 PROGRAM_NAME=`basename $0`
 
 device="stm32f091rc"
+address="0x08000000"
 firmware_image=""
 
 # -------------------------------------------------------------------------
@@ -14,8 +15,9 @@ usage()
     echo "Firmware flash download to STM32 MCUs"
     echo "usage: $PROGRAM_NAME [options] file"
     echo "Options:"
-    echo "  -h, --help\t\tDisplay this usage message"
+    echo "  -h, --help\t\tdisplay this usage message"
     echo "  -d, --device <core>\tdevice to use for the firmware download"
+    echo "  -a, --address <addr>\tstart address. default: 0x08000000"
     echo "\t\t\tExample: stm32f091rc (default), stm32f334r8"
 }
 
@@ -30,14 +32,15 @@ parse_cmd_line()
     for arg in "$@"; do
         shift
         case "$arg" in
-            "--help")   set -- "$@" "-h" ;;
-            "--device") set -- "$@" "-d" ;;
-            *)          set -- "$@" "$arg"
+            "--help")    set -- "$@" "-h" ;;
+            "--device")  set -- "$@" "-d" ;;
+            "--address") set -- "$@" "-a" ;;
+            *)           set -- "$@" "$arg"
         esac
     done
 
     # Process options.
-    while getopts "d:h" opt; do
+    while getopts "d:a:h" opt; do
         case $opt in
             d) case $OPTARG in
                     stm32f*)
@@ -48,6 +51,9 @@ parse_cmd_line()
                         usage $cmd_line; exit 1
                         ;;
                 esac
+                ;;
+            a)
+                address=$OPTARG
                 ;;
             h)
                 usage $cmd_line
@@ -83,7 +89,7 @@ parse_cmd_line $*
 
 JLinkExe -device $device -if JTAG -speed 4000 -autoconnect -1 -jtagconf -1,-1  <<_InputFromHere_
 r
-loadfile $firmware_image
+loadfile $firmware_image $address
 r
 exit
 _InputFromHere_
