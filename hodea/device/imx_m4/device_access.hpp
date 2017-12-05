@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_IMX_M4_DEVICE_ACCESS_HPP_
-#define _HODEA_IMX_M4_DEVICE_ACCESS_HPP_
+#if !defined HODEA_IMX_M4_DEVICE_ACCESS_HPP
+#define HODEA_IMX_M4_DEVICE_ACCESS_HPP
 
 #include <hodea/device/arm_cortex_m/device_access.hpp>
 
@@ -55,4 +55,4 @@
 #define _NXP_FLD2VAL(field, value) \
     (((value) & field ## _MASK) >> field ## _SHIFT)
 
-#endif /*!_HODEA_IMX_M4_DEVICE_ACCESS_HPP_ */
+#endif /*!HODEA_IMX_M4_DEVICE_ACCESS_HPP */

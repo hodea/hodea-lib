@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_UTILS_HPP_
-#define _HODEA_UTILS_HPP_
+#if !defined HODEA_UTILS_HPP
+#define HODEA_UTILS_HPP
 
 #include <cstddef>
 #include <array>
@@ -44,4 +44,4 @@ constexpr std::size_t array_size(T (&)[N])
 
 } // namespace hodea
 
-#endif /*!_HODEA_UTILS_HPP_ */
+#endif /*!HODEA_UTILS_HPP */

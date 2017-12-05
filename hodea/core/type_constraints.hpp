@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_TYPE_CONSTRAINTS_HPP_
-#define _HODEA_TYPE_CONSTRAINTS_HPP_
+#if !defined HODEA_TYPE_CONSTRAINTS_HPP
+#define HODEA_TYPE_CONSTRAINTS_HPP
 
 #include <type_traits>
 #include <hodea/core/type_constraints.hpp>
@@ -53,4 +53,4 @@ struct enable_if_bitmask_type
 
 } // namespace hodea
 
-#endif /*!_HODEA_TYPE_CONSTRAINTS_HPP_ */
+#endif /*!HODEA_TYPE_CONSTRAINTS_HPP */

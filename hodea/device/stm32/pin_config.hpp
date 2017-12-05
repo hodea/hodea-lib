@@ -31,8 +31,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_STM32_PIN_CONFIG_HPP_
-#define _HODEA_STM32_PIN_CONFIG_HPP_
+#if !defined HODEA_STM32_PIN_CONFIG_HPP
+#define HODEA_STM32_PIN_CONFIG_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
@@ -378,4 +378,4 @@ private:
 
 } // namespace hodea
 
-#endif /*!_HODEA_STM32_PIN_CONFIG_HPP_ */
+#endif /*!HODEA_STM32_PIN_CONFIG_HPP */

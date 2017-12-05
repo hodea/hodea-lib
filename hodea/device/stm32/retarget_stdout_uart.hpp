@@ -13,8 +13,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_STM32_RETARGET_STDOUT_UART_HPP_
-#define _HODEA_STM32_RETARGET_STDOUT_UART_HPP_
+#if !defined HODEA_STM32_RETARGET_STDOUT_UART_HPP
+#define HODEA_STM32_RETARGET_STDOUT_UART_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/math.hpp>
@@ -47,4 +47,4 @@ void retarget_deinit();
 
 } // namespace hodea
 
-#endif /*!_HODEA_STM32_RETARGET_STDOUT_UART_HPP_ */
+#endif /*!HODEA_STM32_RETARGET_STDOUT_UART_HPP */

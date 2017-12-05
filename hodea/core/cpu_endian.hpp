@@ -14,8 +14,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_CPU_ENDIAN_HPP_
-#define _HODEA_CPU_ENDIAN_HPP_
+#if !defined HODEA_CPU_ENDIAN_HPP
+#define HODEA_CPU_ENDIAN_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/uswap.hpp>
@@ -187,4 +187,4 @@ static inline constexpr uint64_t be64_to_cpu(uint64_t x)
 
 } // namespace hodea
 
-#endif /*!_HODEA_CPU_ENDIAN_HPP_ */
+#endif /*!HODEA_CPU_ENDIAN_HPP */

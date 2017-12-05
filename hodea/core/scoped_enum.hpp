@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_SCOPED_ENUM_OR_OPERATOR_HPP_
-#define _HODEA_SCOPED_ENUM_OR_OPERATOR_HPP_
+#if !defined HODEA_SCOPED_ENUM_OR_OPERATOR_HPP
+#define HODEA_SCOPED_ENUM_OR_OPERATOR_HPP
 
 #include <type_traits>
 
@@ -36,4 +36,4 @@ static inline constexpr Enum operator |(Enum lhs, Enum rhs)             \
 }
 
 
-#endif /*!_HODEA_SCOPED_ENUM_OR_OPERATOR_HPP_ */
+#endif /*!HODEA_SCOPED_ENUM_OR_OPERATOR_HPP */

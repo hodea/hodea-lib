@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_STM32_DEVICE_SETUP_HPP_
-#define _HODEA_STM32_DEVICE_SETUP_HPP_
+#if !defined HODEA_STM32_DEVICE_SETUP_HPP
+#define HODEA_STM32_DEVICE_SETUP_HPP
 
 #include <hodea/device/hal/device_properties.hpp>
 #include "hodea_user_config.hpp"
@@ -22,4 +22,4 @@
 
 #include <hodea/device/hal/device_access.hpp>
 
-#endif /*!_HODEA_STM32_DEVICE_SETUP_HPP_ */
+#endif /*!HODEA_STM32_DEVICE_SETUP_HPP */

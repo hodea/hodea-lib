@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BITFIELD_HPP_
-#define _HODEA_BITFIELD_HPP_
+#if !defined HODEA_BITFIELD_HPP
+#define HODEA_BITFIELD_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/type_constraints.hpp>
@@ -169,4 +169,4 @@ constexpr T fld2val(T field, const Bitfield_descriptor<T>& bfd)
 
 } // namespace hodea
 
-#endif /*!_HODEA_BITFIELD_HPP_ */
+#endif /*!HODEA_BITFIELD_HPP */

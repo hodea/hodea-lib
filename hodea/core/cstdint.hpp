@@ -23,8 +23,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_CSTDINT_HPP_
-#define _HODEA_CSTDINT_HPP_
+#if !defined HODEA_CSTDINT_HPP
+#define HODEA_CSTDINT_HPP
 
 #include <cstdint>
 
@@ -68,4 +68,4 @@ namespace std
 } // namespace std
 
 
-#endif /*!_HODEA_CSTDINT_HPP_ */
+#endif /*!HODEA_CSTDINT_HPP */

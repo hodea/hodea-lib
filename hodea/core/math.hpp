@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_MATH_HPP_
-#define _HODEA_MATH_HPP_
+#if !defined HODEA_MATH_HPP
+#define HODEA_MATH_HPP
 
 #include <type_traits>
 #include <algorithm>
@@ -124,4 +124,4 @@ constexpr T math_round_to(double x)
 
 } // namespace hodea
 
-#endif /*!_HODEA_MATH_HPP_ */
+#endif /*!HODEA_MATH_HPP */

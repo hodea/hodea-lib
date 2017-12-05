@@ -43,8 +43,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_BITMANIP_HPP_
-#define _HODEA_BITMANIP_HPP_
+#if !defined HODEA_BITMANIP_HPP
+#define HODEA_BITMANIP_HPP
 
 #include <type_traits>
 #include <hodea/core/type_constraints.hpp>
@@ -265,4 +265,4 @@ bool is_bit_set(T_v val, T_m msk, bool need_all_bits_set = false)
 
 } // namespace hodea
 
-#endif /*!_HODEA_BITMANIP_HPP_ */
+#endif /*!HODEA_BITMANIP_HPP */

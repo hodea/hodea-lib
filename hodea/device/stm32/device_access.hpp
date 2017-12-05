@@ -6,9 +6,9 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_STM32_DEVICE_ACCESS_HPP_
-#define _HODEA_STM32_DEVICE_ACCESS_HPP_
+#if !defined HODEA_STM32_DEVICE_ACCESS_HPP
+#define HODEA_STM32_DEVICE_ACCESS_HPP
 
 #include <hodea/device/arm_cortex_m/device_access.hpp>
 
-#endif /*!_HODEA_STM32_DEVICE_ACCESS_HPP_ */
+#endif /*!HODEA_STM32_DEVICE_ACCESS_HPP */

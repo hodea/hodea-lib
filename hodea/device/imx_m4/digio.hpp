@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_IMX_M4_DIGIO_HPP_
-#define _HODEA_IMX_M4_DIGIO_HPP_
+#if !defined HODEA_IMX_M4_DIGIO_HPP
+#define HODEA_IMX_M4_DIGIO_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
@@ -215,4 +215,4 @@ static inline void digio_modify_outputs(
 
 } // namespace hodea
 
-#endif /*!_HODEA_IMX_M4_DIGIO_HPP_ */
+#endif /*!HODEA_IMX_M4_DIGIO_HPP */

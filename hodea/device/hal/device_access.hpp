@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_HAL_DEVICE_ACCESS_HPP_
-#define _HODEA_HAL_DEVICE_ACCESS_HPP_
+#if !defined HODEA_HAL_DEVICE_ACCESS_HPP
+#define HODEA_HAL_DEVICE_ACCESS_HPP
 
 #include <hodea/device/hal/device_properties.hpp>
 
@@ -19,4 +19,4 @@
 #error "Unsupported device."
 #endif
 
-#endif /*!_HODEA_HAL_DEVICE_ACCESS_HPP_ */
+#endif /*!HODEA_HAL_DEVICE_ACCESS_HPP */

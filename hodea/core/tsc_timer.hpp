@@ -46,8 +46,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_TSC_TIMER_HPP_
-#define _HODEA_TSC_TIMER_HPP_
+#if !defined HODEA_TSC_TIMER_HPP
+#define HODEA_TSC_TIMER_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/math.hpp>
@@ -185,4 +185,4 @@ public:
 
 } // namespace hodea
 
-#endif /*!_HODEA_TSC_TIMER_HPP_ */
+#endif /*!HODEA_TSC_TIMER_HPP */

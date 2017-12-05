@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_STM32_DIGIO_HPP_
-#define _HODEA_STM32_DIGIO_HPP_
+#if !defined HODEA_STM32_DIGIO_HPP
+#define HODEA_STM32_DIGIO_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
@@ -184,4 +184,4 @@ static inline void digio_modify_outputs(
 
 } // namespace hodea
 
-#endif /*!_HODEA_STM32_DIGIO_HPP_ */
+#endif /*!HODEA_STM32_DIGIO_HPP */

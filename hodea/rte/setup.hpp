@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_RTE_SETUP_HPP_
-#define _HODEA_RTE_SETUP_HPP_
+#if !defined HODEA_RTE_SETUP_HPP
+#define HODEA_RTE_SETUP_HPP
 
 namespace hodea {
 
@@ -23,4 +23,4 @@ void rte_deinit();
 
 } // namespace hodea
 
-#endif /*!_HODEA_RTE_SETUP_HPP_ */
+#endif /*!HODEA_RTE_SETUP_HPP */

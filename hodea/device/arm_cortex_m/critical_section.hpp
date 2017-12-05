@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_ARM_CM_CRITICAL_SECTION_HPP_
-#define _HODEA_ARM_CM_CRITICAL_SECTION_HPP_
+#if !defined HODEA_ARM_CM_CRITICAL_SECTION_HPP
+#define HODEA_ARM_CM_CRITICAL_SECTION_HPP
 
 #include <atomic>
 #include <hodea/core/cstdint.hpp>
@@ -61,4 +61,4 @@ private:
 
 } // namespace hodea
 
-#endif /*!_HODEA_ARM_CM_CRITICAL_SECTION_HPP_ */
+#endif /*!HODEA_ARM_CM_CRITICAL_SECTION_HPP */

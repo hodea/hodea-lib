@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_IMX_M4_DEVICE_SETUP_HPP_
-#define _HODEA_IMX_M4_DEVICE_SETUP_HPP_
+#if !defined HODEA_IMX_M4_DEVICE_SETUP_HPP
+#define HODEA_IMX_M4_DEVICE_SETUP_HPP
 
 #include <hodea/device/hal/device_properties.hpp>
 
@@ -19,4 +19,4 @@
 
 #include <hodea/device/hal/device_access.hpp>
 
-#endif /*!_HODEA_IMX_M4_DEVICE_SETUP_HPP_ */
+#endif /*!HODEA_IMX_M4_DEVICE_SETUP_HPP */

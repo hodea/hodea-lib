@@ -12,8 +12,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_RTE_HTSC_HPP_
-#define _HODEA_RTE_HTSC_HPP_
+#if !defined HODEA_RTE_HTSC_HPP
+#define HODEA_RTE_HTSC_HPP
 
 #include <hodea/core/tsc_timer.hpp>
 #include "hodea_user_config.hpp"
@@ -25,4 +25,4 @@ using htsc = Tsc_timer<Htsc_time_base>;
 
 } // namespace hodea
 
-#endif /*!_HODEA_RTE_HTSC_HPP_ */
+#endif /*!HODEA_RTE_HTSC_HPP */

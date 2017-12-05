@@ -40,8 +40,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_SERIALIZATION_HPP_
-#define _HODEA_SERIALIZATION_HPP_
+#if !defined HODEA_SERIALIZATION_HPP
+#define HODEA_SERIALIZATION_HPP
 
 #include <type_traits>
 #include <hodea/core/cstdint.hpp>
@@ -397,4 +397,4 @@ static inline int store64_be(uint8_t *buf, const T val)
 
 } // namespace hodea
 
-#endif /*!_HODEA_SERIALIZATION_HPP_ */
+#endif /*!HODEA_SERIALIZATION_HPP */

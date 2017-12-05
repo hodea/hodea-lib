@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_USWAP_HPP_
-#define _HODEA_USWAP_HPP_
+#if !defined HODEA_USWAP_HPP
+#define HODEA_USWAP_HPP
 
 #include <hodea/core/cstdint.hpp>
 
@@ -64,4 +64,4 @@ static inline constexpr uint64_t uswap64(uint64_t x)
 
 } // namespace hodea
 
-#endif /*!_HODEA_USWAP_HPP_ */
+#endif /*!HODEA_USWAP_HPP */

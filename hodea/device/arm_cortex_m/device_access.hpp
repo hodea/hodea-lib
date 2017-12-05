@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP_
-#define _HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP_
+#if !defined HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP
+#define HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP
 
 #include <hodea/core/cstdint.hpp>
 
@@ -93,4 +93,4 @@ public:
     const uintptr_t addr;
 };
 
-#endif /*!_HODEA_ARM_CORTES_CM_DEVICE_ACCESS_HPP_ */
+#endif /*!HODEA_ARM_CORTEX_CM_DEVICE_ACCESS_HPP */

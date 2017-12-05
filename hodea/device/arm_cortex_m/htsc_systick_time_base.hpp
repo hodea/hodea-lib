@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_
-#define _HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_
+#if !defined HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP
+#define HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP
 
 #include <hodea/device/hal/device_setup.hpp>
 
@@ -55,4 +55,4 @@ public:
 
 } // namespace hodea
 
-#endif /*!_HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP_ */
+#endif /*!HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP */

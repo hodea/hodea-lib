@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_IMX7_M4_PIN_CONFIG_HPP_
-#define _HODEA_IMX7_M4_PIN_CONFIG_HPP_
+#if !defined HODEA_IMX7_M4_PIN_CONFIG_HPP
+#define HODEA_IMX7_M4_PIN_CONFIG_HPP
 
 #include <hodea/device/hal/device_setup.hpp>
 
@@ -125,4 +125,4 @@ enum struct Pad_dse {
 
 } // namespace hodea
 
-#endif /*!_HODEA_IMX7_M4_PIN_CONFIG_HPP_ */
+#endif /*!HODEA_IMX7_M4_PIN_CONFIG_HPP */

@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined _HODEA_HAL_DEVICE_PROPERTIES_HPP_
-#define _HODEA_HAL_DEVICE_PROPERTIES_HPP_
+#if !defined HODEA_HAL_DEVICE_PROPERTIES_HPP
+#define HODEA_HAL_DEVICE_PROPERTIES_HPP
 
 #if defined(STM32F030x6) || defined(STM32F030x8) || \
     defined(STM32F031x6) || defined(STM32F038xx) || \
@@ -51,4 +51,4 @@
 
 #endif
 
-#endif /*!_HODEA_HAL_DEVICE_PROPERTIES_HPP_ */
+#endif /*!HODEA_HAL_DEVICE_PROPERTIES_HPP */
