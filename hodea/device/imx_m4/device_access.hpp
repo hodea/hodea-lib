@@ -28,9 +28,9 @@
  * the fields with _SHIFT and _MASK.
  *
  * Therefore, we provide our own implementation of the _VAL2FLD()
- * macro for NXP.
+ * macro for the i.MX processor.
  */
-#define _NXP_VAL2FLD(field, value) \
+#define IMX_VAL2FLD(field, value) \
     (((value) << field ## _SHIFT) & field ## _MASK)
 
 /**
@@ -50,9 +50,9 @@
  * the fields with _SHIFT and _MASK.
  *
  * Therefore, we provide our own implementation of the _FLD2VAL()
- * macro for NXP.
+ * macro for the i.MX processor.
  */
-#define _NXP_FLD2VAL(field, value) \
+#define IMX_FLD2VAL(field, value) \
     (((value) & field ## _MASK) >> field ## _SHIFT)
 
 #endif /*!HODEA_IMX_M4_DEVICE_ACCESS_HPP */

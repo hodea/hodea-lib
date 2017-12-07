@@ -60,14 +60,14 @@ enum struct Pad_dse {
     do {                                                                \
         IOMUXC->SW_MUX_CTL_PAD_ ## pad = (mux_mode);                    \
         IOMUXC->SW_PAD_CTL_PAD_ ## pad =                                \
-            _NXP_VAL2FLD(                                               \
+            IMX_VAL2FLD(                                                \
                 IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _PS,                   \
                 static_cast<unsigned>(ps)                               \
                 ) |                                                     \
-            _NXP_VAL2FLD(IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _PE, pe) |    \
-            _NXP_VAL2FLD(IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _HYS, hys) |  \
-            _NXP_VAL2FLD(IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _SRE, sre) |  \
-            _NXP_VAL2FLD(                                               \
+            IMX_VAL2FLD(IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _PE, pe) |     \
+            IMX_VAL2FLD(IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _HYS, hys) |   \
+            IMX_VAL2FLD(IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _SRE, sre) |   \
+            IMX_VAL2FLD(                                                \
                 IOMUXC_SW_PAD_CTL_PAD_ ## pad ## _DSE,                  \
                 static_cast<unsigned>(dse)                              \
                 );                                                      \
@@ -92,21 +92,21 @@ enum struct Pad_dse {
  * \param[in] dse
  *      Drive strength; 0: X1, 1: X4, 2: X2, 3: X6
  */
-#define iomux_lpsr_config_pad(pad, mux_mode, ps, pe, hys, sre, dse)     \
-    do {                                                                \
-        IOMUXC_LPSR->SW_MUX_CTL_PAD_ ## pad = (mux_mode);               \
-        IOMUXC_LPSR->SW_PAD_CTL_PAD_ ## pad =                           \
-            _NXP_VAL2FLD(                                               \
-                IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _PS,              \
-                static_cast<unsigned>(ps)                               \
-                ) |                                                     \
-            _NXP_VAL2FLD(IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _PE, pe) | \
-            _NXP_VAL2FLD(IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _HYS, hys)|\
-            _NXP_VAL2FLD(IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _SRE, sre)|\
-            _NXP_VAL2FLD(                                               \
-                IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _DSE,             \
-                static_cast<unsigned>(dse)                              \
-                );                                                      \
+#define iomux_lpsr_config_pad(pad, mux_mode, ps, pe, hys, sre, dse)      \
+    do {                                                                 \
+        IOMUXC_LPSR->SW_MUX_CTL_PAD_ ## pad = (mux_mode);                \
+        IOMUXC_LPSR->SW_PAD_CTL_PAD_ ## pad =                            \
+            IMX_VAL2FLD(                                                 \
+                IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _PS,               \
+                static_cast<unsigned>(ps)                                \
+                ) |                                                      \
+            IMX_VAL2FLD(IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _PE, pe) | \
+            IMX_VAL2FLD(IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _HYS, hys)|\
+            IMX_VAL2FLD(IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _SRE, sre)|\
+            IMX_VAL2FLD(                                                 \
+                IOMUXC_LPSR_SW_PAD_CTL_PAD_ ## pad ## _DSE,              \
+                static_cast<unsigned>(dse)                               \
+                );                                                       \
     } while (0)
 
 /**
