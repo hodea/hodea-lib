@@ -29,7 +29,7 @@ namespace hodea {
  */
 typedef bool Digio_pin_value;
 
- /**
+/**
  * Class to name a digital I/O pin.
  */
 class Digio_pin {
