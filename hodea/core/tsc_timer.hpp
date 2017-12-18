@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT
 
 /**
- * Timer class based on a timestamp counter.
+ * Timing methods based on a timestamp counter.
  *
- * This file provides a timer class and methods based on a free-running
+ * This file provides timing methods based on a free-running timestamp
  * counter. The counter is used as time base. Having two counter values,
  * e.g. the counter value from the start point and the actual counter
  * value, the difference of this two counter values gives the time elapsed
@@ -46,8 +46,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined HODEA_TSC_TIMER_HPP
-#define HODEA_TSC_TIMER_HPP
+#if !defined HODEA_TSC_HPP
+#define HODEA_TSC_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/math.hpp>
@@ -55,10 +55,10 @@
 namespace hodea {
 
 /**
- * Class providing timer functions based an timestamp counter.
+ * Class providing timing methods based on a timestamp counter.
  */
 template <class T_time_base>
-class Tsc_timer : public T_time_base {
+class Tsc : public T_time_base {
 public:
     using Ticks = typename T_time_base::Ticks;
 
@@ -185,4 +185,4 @@ public:
 
 } // namespace hodea
 
-#endif /*!HODEA_TSC_TIMER_HPP */
+#endif /*!HODEA_TSC_HPP */
