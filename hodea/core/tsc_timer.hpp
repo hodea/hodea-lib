@@ -6,8 +6,8 @@
  *
  * \author f.hollerer@gmx.net
  */
-#if !defined HODEA_COUNTDOWN_TIMER_HPP
-#define HODEA_COUNTDOWN_TIMER_HPP
+#if !defined HODEA_TSC_TIMER_HPP
+#define HODEA_TSC_TIMER_HPP
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/math.hpp>
@@ -16,10 +16,10 @@
 namespace hodea {
 
 /**
- * Class providing a countdown timer.
+ * Class providing a countdown timer base on temstamp counter class.
  */
 template <typename T_ticks, class T_tsc>
-class Countdown_timer
+class Tsc_timer
 {
 public:
     typedef T_ticks Ticks;
@@ -112,7 +112,7 @@ public:
      */
     Ticks remaining()
     {
-        return is_running ? (value - expired) : 0;
+        return is_running() ? (value - expired) : 0;
     }
 
     /**
@@ -127,10 +127,10 @@ public:
     void update()
     {
         if (is_running()) {
-            typename T_tsc::Ticks now = typename T_tsc::now();
+            typename T_tsc::Ticks now = T_tsc::now();
             typename T_tsc::Ticks elapsed;
           
-            elapsed = typename T_tsc::elapsed(ts_last, now);
+            elapsed = T_tsc::elapsed(ts_last, now);
 
             if (value > (elapsed + expired))
                 value -= elapsed;
@@ -152,4 +152,4 @@ private:
 
 } // namespace hodea
 
-#endif /*!HODEA_COUNTDOWN_TIMER_HPP */
+#endif /*!HODEA_TSC_TIMER_HPP */

@@ -17,7 +17,7 @@ namespace hodea {
  */
 void rte_init()
 {
-    htsc::init();
+    Htsc::init();
 }
 
 /**
@@ -25,7 +25,7 @@ void rte_init()
  */
 void rte_deinit()
 {
-    htsc::deinit();
+    Htsc::deinit();
 }
 
 } // namespace hodea

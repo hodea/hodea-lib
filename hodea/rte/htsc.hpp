@@ -15,13 +15,15 @@
 #if !defined HODEA_RTE_HTSC_HPP
 #define HODEA_RTE_HTSC_HPP
 
+#include <hodea/core/tsc.hpp>
 #include <hodea/core/tsc_timer.hpp>
 #include "hodea_user_config.hpp"
 #include HODEA_CONFIG_HTSC_TIME_BASE_INCLUDE
 
 namespace hodea {
 
-using htsc = Tsc_timer<Htsc_time_base>;
+using Htsc = Tsc<Htsc_time_base>;
+using Htsc_timer = Tsc_timer<uint_fast32_t, Htsc>;
 
 } // namespace hodea
 
