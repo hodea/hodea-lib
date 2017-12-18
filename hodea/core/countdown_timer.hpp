@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 /**
- * Simple countdown timer based on Tsc_timer.
+ * Simple countdown timer based on timestamp counter class Tsc.
  *
  * \author f.hollerer@gmx.net
  */
@@ -11,14 +11,14 @@
 
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/math.hpp>
-#include <hodea/core/tsc_timer.hpp>
+#include <hodea/core/tsc.hpp>
 
 namespace hodea {
 
 /**
  * Class providing a countdown timer.
  */
-template <typename T_ticks, class T_tsc_timer>
+template <typename T_ticks, class T_tsc>
 class Countdown_timer
 {
 public:
@@ -33,7 +33,7 @@ public:
      */
     static constexpr Ticks sec_to_ticks(double sec)
     {
-        return math_round_to<Ticks>(T_tsc_timer::counter_clk_hz * sec);
+        return math_round_to<Ticks>(T_tsc::counter_clk_hz * sec);
     }
 
     /**
@@ -71,17 +71,82 @@ public:
      */
     static constexpr Ticks i_us_to_ticks(unsigned us)
     {
-        return (static_cast<uint64_t>(us) * T_tsc_timer::counter_clk_hz)
+        return (static_cast<uint64_t>(us) * T_tsc::counter_clk_hz)
                     / 1000000;
     }
 
+    /**
+     * Start countdown timer.
+     *
+     * \param[in] ticks
+     *      Period of time to load the timer with.
+     */
+    void start(Ticks ticks)
+    {
+        value = ticks + expired;
+        ts_last = T_tsc::now();
+    }
+
+    /**
+     * Stop countdown timer.
+     */
+    void stop() { value = stopped; }
+
+    /**
+     * Test if timer is expired.
+     */
+    bool is_expired() { return value == expired; }
+
+    /**
+     * Test if timer is stopped.
+     */
+    bool is_stopped() { return value == stopped; }
+
+    /**
+     * Test if timer is running.
+     */
+    bool is_running() { return value > expired; }
+
+    /**
+     * Get ticks remaining till the timer expires.
+     */
+    Ticks remaining()
+    {
+        return is_running ? (value - expired) : 0;
+    }
+
+    /**
+     * Update timer value.
+     *
+     * This method uses the timestamp counter to measure the time
+     * elapsed since its last invocation and updates the internal timer
+     * value accordingly. The time between two invocations must be less
+     * than the time duration provided by the underlying timestamp counter
+     * minus 2 ticks.
+     */
+    void update()
+    {
+        if (is_running()) {
+            typename T_tsc::Ticks now = typename T_tsc::now();
+            typename T_tsc::Ticks elapsed;
+          
+            elapsed = typename T_tsc::elapsed(ts_last, now);
+
+            if (value > (elapsed + expired))
+                value -= elapsed;
+            else
+                value = expired;
+
+            ts_last = now;
+        }
+    }
 
 private:
-    typename T_tsc_timer::Ticks ts_last;
-    uint_fast32_t value;
+    typename T_tsc::Ticks ts_last;
+    Ticks value = stopped;
 
-    static constexpr uint_fast32_t stopped_value = 0;
-    static constexpr uint_fast32_t expired_value = 1;
+    static constexpr Ticks stopped = 0;
+    static constexpr Ticks expired = 1;
 };
 
 
