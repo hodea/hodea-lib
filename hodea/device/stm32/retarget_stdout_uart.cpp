@@ -15,7 +15,7 @@
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>
 #include <hodea/device/hal/device_setup.hpp>
-#include "retarget_stdout_uart.hpp"
+#include <hodea/device/hal/retarget_stdout_uart.hpp>
 
 using namespace hodea;
 
