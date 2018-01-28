@@ -1,7 +1,7 @@
 # hodea-lib
 Highly Optimized Deeply Embedded Auxiliaries Library
 
-[logo](logo/hodea_logo.png)
+![logo](logo/hodea_logo.png)
 
 ---
 
