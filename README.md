@@ -1,6 +1,10 @@
 # hodea-lib
 Highly Optimized Deeply Embedded Auxiliaries Library
 
+[logo](logo/hodea_logo.png)
+
+---
+
 ## About the library
 
 This is a C++ source code library. The term **source code libary** was
