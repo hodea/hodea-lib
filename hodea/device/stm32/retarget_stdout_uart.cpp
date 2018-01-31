@@ -10,7 +10,7 @@
  *
  * This implementation uses busy waiting to output a character to the
  * UART.
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #include <hodea/core/cstdint.hpp>
 #include <hodea/core/bitmanip.hpp>

@@ -4,7 +4,7 @@
 /**
  * ARM systick timer as timebase for htsc.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP
 #define HODEA_ARM_CM_HTSC_SYSTICK_TIME_BASE_HPP

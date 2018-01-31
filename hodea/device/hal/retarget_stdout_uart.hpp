@@ -4,7 +4,7 @@
 /**
  * Retarget printf() and other functions writing to stdout to an UART.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_HAL_RETARGET_STDOUT_UART_HPP
 #define HODEA_HAL_RETARGET_STDOUT_UART_HPP

@@ -4,7 +4,7 @@
 /**
  * Math related functions.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_MATH_HPP
 #define HODEA_MATH_HPP

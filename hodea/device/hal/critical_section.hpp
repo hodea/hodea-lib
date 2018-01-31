@@ -4,7 +4,7 @@
 /**
  * Digital input / output.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_HAL_CRITICAL_SECTION_HPP
 #define HODEA_HAL_CRITICAL_SECTION_HPP

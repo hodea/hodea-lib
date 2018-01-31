@@ -4,7 +4,7 @@
 /**
  * Set up basic infrastructure for a device.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_HAL_DEVICE_SETUP_HPP
 #define HODEA_HAL_DEVICE_SETUP_HPP

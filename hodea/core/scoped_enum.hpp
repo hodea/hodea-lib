@@ -4,7 +4,7 @@
 /**
  * Utilities to make use of scoped enums more convenient.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_SCOPED_ENUM_OR_OPERATOR_HPP
 #define HODEA_SCOPED_ENUM_OR_OPERATOR_HPP

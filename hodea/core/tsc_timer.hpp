@@ -4,7 +4,7 @@
 /**
  * Simple countdown timer based on timestamp counter class Tsc.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_TSC_TIMER_HPP
 #define HODEA_TSC_TIMER_HPP

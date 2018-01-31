@@ -11,7 +11,7 @@
  * This implementation uses busy waiting to output a character to the
  * UART.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_STM32_RETARGET_STDOUT_UART_HPP
 #define HODEA_STM32_RETARGET_STDOUT_UART_HPP

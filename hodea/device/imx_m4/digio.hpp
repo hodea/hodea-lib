@@ -4,7 +4,7 @@
 /**
  * Support for digital inputs and outputs.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_IMX_M4_DIGIO_HPP
 #define HODEA_IMX_M4_DIGIO_HPP

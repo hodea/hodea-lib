@@ -4,7 +4,7 @@
 /**
  * Hodea runtime environment setup.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 
 #include <hodea/rte/htsc.hpp>

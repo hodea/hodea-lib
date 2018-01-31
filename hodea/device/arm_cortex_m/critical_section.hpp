@@ -4,7 +4,7 @@
 /**
  * Enter and exit critical sections.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_ARM_CM_CRITICAL_SECTION_HPP
 #define HODEA_ARM_CM_CRITICAL_SECTION_HPP

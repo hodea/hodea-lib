@@ -4,7 +4,7 @@
 /**
  * Sets up basic infrastructure for the Cortex-M4 core on IMX processors.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_IMX_M4_DEVICE_SETUP_HPP
 #define HODEA_IMX_M4_DEVICE_SETUP_HPP

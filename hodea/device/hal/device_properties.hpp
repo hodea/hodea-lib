@@ -4,7 +4,7 @@
 /**
  * Derive properties from selected target device.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_HAL_DEVICE_PROPERTIES_HPP
 #define HODEA_HAL_DEVICE_PROPERTIES_HPP

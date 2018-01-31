@@ -4,7 +4,7 @@
 /**
  * IOMUX - I/O multiplexer pin configuration support.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_IMX7_M4_PIN_CONFIG_HPP
 #define HODEA_IMX7_M4_PIN_CONFIG_HPP

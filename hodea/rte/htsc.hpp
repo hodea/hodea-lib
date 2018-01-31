@@ -10,7 +10,7 @@
  * the resolution and maximum time span covered by the timer fits their
  * needs.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_RTE_HTSC_HPP
 #define HODEA_RTE_HTSC_HPP

@@ -4,7 +4,7 @@
 /**
  * Reverse byte order of unsigned types various sizes.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_USWAP_HPP
 #define HODEA_USWAP_HPP

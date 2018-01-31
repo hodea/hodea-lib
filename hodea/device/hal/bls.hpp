@@ -4,7 +4,7 @@
 /**
  * Bootloader support functions.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_HAL_BLS_HPP
 #define HODEA_HAL_BLS_HPP

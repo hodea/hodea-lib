@@ -4,7 +4,7 @@
 /**
  * Miscellaneous utilities which don't fit somewhere else.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_UTILS_HPP
 #define HODEA_UTILS_HPP

@@ -29,7 +29,7 @@
  * - GPIOx_AFRL, GPIOx_AFRH
  *      all pins set to AF0 (active if alternate function mode selected)
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_STM32_PIN_CONFIG_HPP
 #define HODEA_STM32_PIN_CONFIG_HPP

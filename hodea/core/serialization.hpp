@@ -38,7 +38,7 @@
  * strcpy() library functions, i.e. the first parameter gives the
  * destination, the second the source.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_SERIALIZATION_HPP
 #define HODEA_SERIALIZATION_HPP

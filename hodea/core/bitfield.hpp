@@ -4,7 +4,7 @@
 /**
  * Support functions for bit fields.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_BITFIELD_HPP
 #define HODEA_BITFIELD_HPP

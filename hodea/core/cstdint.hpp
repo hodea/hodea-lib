@@ -21,7 +21,7 @@
  * Details \see
  * https://stackoverflow.com/questions/13642827/cstdint-vs-stdint-h
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_CSTDINT_HPP
 #define HODEA_CSTDINT_HPP

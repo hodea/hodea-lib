@@ -4,7 +4,7 @@
 /**
  * Digital input / output.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_STM32_DIGIO_HPP
 #define HODEA_STM32_DIGIO_HPP

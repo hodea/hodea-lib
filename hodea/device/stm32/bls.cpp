@@ -4,7 +4,7 @@
 /**
  * Bootloader support functions for STM32 devices.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #include <hodea/core/bitmanip.hpp>
 #include <hodea/device/hal/device_setup.hpp>

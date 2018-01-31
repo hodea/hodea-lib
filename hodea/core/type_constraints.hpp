@@ -4,7 +4,7 @@
 /**
  * Helper to constrain template parameters to certain types.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_TYPE_CONSTRAINTS_HPP
 #define HODEA_TYPE_CONSTRAINTS_HPP

@@ -4,7 +4,7 @@
 /**
  * CPU related functions for STM32 devices.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #include <hodea/device/hal/cpu.hpp>
 

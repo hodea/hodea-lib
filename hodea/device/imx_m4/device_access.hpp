@@ -4,7 +4,7 @@
 /**
  * Types and classes supporting low level access to peripheral devices.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_IMX_M4_DEVICE_ACCESS_HPP
 #define HODEA_IMX_M4_DEVICE_ACCESS_HPP

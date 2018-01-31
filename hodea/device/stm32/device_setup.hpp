@@ -4,7 +4,7 @@
 /**
  * Sets up basic infrastructure for STM32 devices.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_STM32_DEVICE_SETUP_HPP
 #define HODEA_STM32_DEVICE_SETUP_HPP

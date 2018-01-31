@@ -41,7 +41,7 @@
  * they don't introduce any constrains on the types with which they are
  * used.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_BITMANIP_HPP
 #define HODEA_BITMANIP_HPP

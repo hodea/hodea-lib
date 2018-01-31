@@ -44,7 +44,7 @@
  * to allow calculation it compile time. init(), deinit() and timestamp()
  * should be const, not modifying member variables.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_TSC_HPP
 #define HODEA_TSC_HPP

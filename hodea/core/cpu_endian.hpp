@@ -12,7 +12,7 @@
  * We expect the CPU to user either big or little endian format. We
  * don't support PDP endian.
  *
- * \author f.hollerer@gmx.net
+ * \author f.hollerer@hodea.org
  */
 #if !defined HODEA_CPU_ENDIAN_HPP
 #define HODEA_CPU_ENDIAN_HPP
