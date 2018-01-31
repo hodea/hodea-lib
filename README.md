@@ -6,11 +6,15 @@
 <table>
   <tr>
     <td>Homepage:</td>
-    <td>http://www.hodea.org</td>
+    <td><a href="http://www.hodea.org">http://www.hodea.org</a></td>
   </tr>
   <tr>
     <td>Source code:</td>
-    <td>https://github.com/hodea/hodea-lib</td>
+    <td>
+        <a href="https://github.com/hodea/hodea-lib">
+          https://github.com/hodea/hodea-lib
+        </a>
+    </td>
   </tr>
 </table>
 
