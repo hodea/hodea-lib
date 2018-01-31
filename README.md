@@ -16,6 +16,14 @@
         </a>
     </td>
   </tr>
+  <tr>
+    <td>Wiki:</td>
+    <td>
+        <a href="https://github.com/hodea/hodea-lib/wiki">
+          https://github.com/hodea/hodea-lib/wiki
+        </a>
+    </td>
+  </tr>
 </table>
 
 ---
