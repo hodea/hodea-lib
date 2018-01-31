@@ -1,7 +1,18 @@
-# hodea-lib
-Highly Optimized Deeply Embedded Auxiliaries Library
+# hodea-lib 
+**Highly Optimized Deeply Embedded Auxiliaries Library**
 
 ![logo](logo/hodea_logo.png)
+
+<table>
+  <tr>
+    <td>Homepage:</td>
+    <td>http://www.hodea.org</td>
+  </tr>
+  <tr>
+    <td>Source code:</td>
+    <td>https://github.com/hodea/hodea-lib</td>
+  </tr>
+</table>
 
 ---
 
