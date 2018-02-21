@@ -180,6 +180,23 @@ public:
 
         while (!is_elapsed(start, period)) ;
      }
+
+    /**
+     * Calculate timestamp with a certain period before the given one.
+     *
+     * \param[in] ts_ref
+     *      Timestamp reference from which to go into the past.
+     * \param[in] period
+     *      The time period to go into the past.
+     *
+     * \returns
+     *      A timestamp with the specified \a period before the passed
+     *      reference timestamp.
+     */
+    static Ticks before(Ticks ts_ref, Ticks period)
+    {
+        return (ts_ref - period) & T_time_base::counter_msk;
+    }
 };
 
 
