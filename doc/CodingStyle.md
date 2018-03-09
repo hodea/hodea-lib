@@ -224,3 +224,19 @@ the target device name or other platform specific properties in the file
 name to make it unique. Instead we separate files with similar purpose
 but for different targets via directories. File are distinguisable via
 the directory structure.
+
+## #include
+
+### Path information
+
+We use dots and forward slashes in the &ast;nix-way for path information.
+
+Note: C++ compilers also understand backward slashes, however the
+forward slash is considered standard in C++.
+
+### #include < ... > vs. " ... "
+
+We use angled brackets (< ... >) for files that are in compiler's default
+include path. Quotation marks (" ... ") delimit the names of user-defined
+include files that are not in the compiler's default include path.
+
