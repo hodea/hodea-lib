@@ -11,6 +11,8 @@ This file describes the coding style used for the HODEA library.
 [5]: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions
 [6]: https://llvm.org/docs/CodingStandards.html#namespace-indentation
 [7]: https://channel9.msdn.com/Events/GoingNative/2013/Interactive-Panel-Ask-Us-Anything
+[8]: https://bost.org
+[9]: https://github.com/Microsoft/GSL
 
 [[1]] [Linux Kernel Coding Style][1]
 
@@ -25,6 +27,10 @@ This file describes the coding style used for the HODEA library.
 [[6]] [LLVM Coding Standard][6]
 
 [[7]] [MSDN, Interactive Panel: Ask Us Anything, Aug 19, 2013][7]
+
+[[8]] [boost C++ Libraries][8]
+
+[[9]] [GSL: Guideline Support Library][9]
 
 ## C++ Core Guidelines
 
@@ -236,7 +242,15 @@ forward slash is considered standard in C++.
 
 ### #include < ... > vs. " ... "
 
-We use angled brackets (< ... >) for files that are in compiler's default
-include path. Quotation marks (" ... ") delimit the names of user-defined
-include files that are not in the compiler's default include path.
+In general angle brackets (< ... >) are used for files that are in
+the compiler's default include path. Quotation marks (" ... ") delimit
+the names of user-defined include files that are not in the compiler's
+default include path.
 
+However, hodea-lib is a gray area as it is a library.
+
+We follow the boost [[8]] and gsl [[9]] approach and use angle brackets
+(< ... >) to include header files of the hodea-lib library.
+
+As side effect the angle brackets allow to mock complete files by changing
+the compiler's search path.
