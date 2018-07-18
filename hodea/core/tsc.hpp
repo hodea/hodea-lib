@@ -176,10 +176,10 @@ public:
      */
     static void delay(Ticks period)
     {
-       Ticks start = T_time_base::now();
+        Ticks start = T_time_base::now();
 
         while (!is_elapsed(start, period)) ;
-     }
+    }
 
     /**
      * Calculate timestamp with a certain period before the given one.
