@@ -10,7 +10,6 @@
 #define HODEA_TYPE_CONSTRAINTS_HPP
 
 #include <type_traits>
-#include <hodea/core/type_constraints.hpp>
 
 namespace hodea {
 
