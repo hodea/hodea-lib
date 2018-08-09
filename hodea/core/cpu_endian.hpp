@@ -26,7 +26,7 @@ namespace hodea {
  * We use predefined macros to determine the endianness of the target CPU.
  * Unfortunately, this predefined macros vary from compiler to compiler.
  * If we are unable to determine the endianness, the user must pass
- * the macro HONDEA_IS_CPU_LE with its value set to  true or false 
+ * the macro HODEA_IS_CPU_LE with its value set to  true or false 
  * to the compiler via command line.
  */
 
@@ -37,9 +37,9 @@ namespace hodea {
      * and __ORDER_BIG_ENDIAN__.
      */
     #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-        #define HONDEA_IS_CPU_LE true
+        #define HODEA_IS_CPU_LE true
     #elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-        #define HONDEA_IS_CPU_LE false
+        #define HODEA_IS_CPU_LE false
     #endif
 
 #elif defined __CC_ARM
@@ -48,9 +48,9 @@ namespace hodea {
      * ARM Compiler V5 or older.
      */
     #if defined __BIG_ENDIAN
-        #define HONDEA_IS_CPU_LE false
+        #define HODEA_IS_CPU_LE false
     #else
-        #define HONDEA_IS_CPU_LE true
+        #define HODEA_IS_CPU_LE true
     #endif
 
 #elif defined __ICCARM__
@@ -59,26 +59,26 @@ namespace hodea {
      * IAR Compiler
      */
     #if __LITTLE_ENDIAN__ == 0
-        #define HONDEA_IS_CPU_LE false
+        #define HODEA_IS_CPU_LE false
     #elif __LITTLE_ENDIAN__ == 1
-        #define HONDEA_IS_CPU_LE true
+        #define HODEA_IS_CPU_LE true
     #endif
 
 #endif
 
-#if !defined HONDEA_IS_CPU_LE
+#if !defined HODEA_IS_CPU_LE
 #error "Unable to detect cpu endianness via predefined macros."
-#error "Please provide HONDEA_IS_CPU_LE = true or false via command line."
+#error "Please provide HODEA_IS_CPU_LE = true or false via command line."
 #endif
 
-#define HONDEA_IS_CPU_BE (!HONDEA_IS_CPU_LE)
+#define HODEA_IS_CPU_BE (!HODEA_IS_CPU_LE)
 
 /**
  * Test if CPU uses the little endian format.
  */
 constexpr bool is_cpu_le()
 {
-    return HONDEA_IS_CPU_LE;
+    return HODEA_IS_CPU_LE;
 }
 
 /**
@@ -86,7 +86,7 @@ constexpr bool is_cpu_le()
  */
 constexpr bool is_cpu_be()
 {
-    return HONDEA_IS_CPU_BE;
+    return HODEA_IS_CPU_BE;
 }
 
 /**
