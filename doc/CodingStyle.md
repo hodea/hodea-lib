@@ -228,7 +228,7 @@ Bjarne Stroustrup:
 We use boost as the Boost C++ libraries as role model. We don't encode
 the target device name or other platform specific properties in the file
 name to make it unique. Instead we separate files with similar purpose
-but for different targets via directories. File are distinguisable via
+but for different targets via directories. File are distinguishable via
 the directory structure.
 
 ## #include
