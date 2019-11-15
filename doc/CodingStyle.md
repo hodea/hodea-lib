@@ -211,7 +211,8 @@ Chandler Carruth:
 - Here's some simple guidelines:
   1. Use signed integers unless you need two's complement arithmetic or a
      bit pattern
-  2. Use the smallest integer that will suffice.
+  2. If it matters (e.g. large instances, lot of data structures) then
+     use the smallest integer that will suffice.
   3. Otherwise, use int if you think you could count the items, and a
      64-bit integer if it's even more than you would want to count.
 - Stop worrying and use tools to tell you when you need a different type
