@@ -10,7 +10,7 @@ This file describes the coding style used for the HODEA library.
 [4]: https://en.wikipedia.org/wiki/Hungarian_notation
 [5]: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions
 [6]: https://llvm.org/docs/CodingStandards.html#namespace-indentation
-[7]: https://channel9.msdn.com/Events/GoingNative/2013/Interactive-Panel-Ask-Us-Anything
+[7]: https://youtu.be/Puio5dly9N8?t=585
 [8]: https://bost.org
 [9]: https://github.com/Microsoft/GSL
 
